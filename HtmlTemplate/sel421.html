@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SEL-421</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="sel421.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()" method="POST">
+            <h2><b>Уставки терминала SEL421 Schweitzer Laboratories</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub> (VNOMY (L-L))</b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub> ()</b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+
+            <p><u>Уставки реле</u><b></b></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>E21MP</b> Количество зон Mho (фаза-фаза)
+                              </td>
+                              <td>
+                                    <select name="ZONEMHOPHASE" class="common" onchange="changeZone(this)">
+                                          <option value="0">N</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option selected value="5">5</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>E21XP</b> Количество зон Quad (фаза-фаза)
+                              </td>
+                              <td>
+                                    <select name="ZONEQUADPHASE" class="common" onchange="changeZone(this)">
+                                          <option value="0">N</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option selected value="5">5</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>E21MP</b> Количество зон Mho (фаза-земля)
+                              </td>
+                              <td>
+                                    <select name="ZONEMHOGROUND" class="common" onchange="changeZone(this)">
+                                          <option value="0">N</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option selected value="5">5</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>E21XP</b> Количество зон Quad (фаза-земля)
+                              </td>
+                              <td>
+                                    <select name="ZONEQUADGROUND" class="common" onchange="changeZone(this)">
+                                          <option value="0">N</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option selected value="5">5</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>ELOAD</b> Вырез нагрузки
+                              </td>
+                              <td>
+                                    <select name="ELOAD" class="common" onchange="changeZone(this)">
+                                          <option selected value="true">YES</option>
+                                          <option value="false">NO</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR3</b> Направление для зоны 3
+                              </td>
+                              <td>
+                                    <select name="DIR3" class="common">
+                                          <option value="FORWARD">F (вперед)</option>
+                                          <option selected value="REVERSE">R (назад)</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR4</b> Направление для зоны 4
+                              </td>
+                              <td>
+                                    <select name="DIR4" class="common">
+                                          <option selected value="FORWARD">F (вперед)</option>
+                                          <option value="REVERSE">R (назад)</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR5</b> Направление для зоны 5
+                              </td>
+                              <td>
+                                    <select name="DIR5" class="common">
+                                          <option selected value="FORWARD">F (вперед)</option>
+                                          <option value="REVERSE">R (назад)</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>kZ0</b> Коэффициент компенсации нулевой последовательности (если установлен на
+                                    AUTO, то ведется автоматически из Z0 и Z1)
+                              </td>
+                              <td>
+                                    <select name="KM0" class="common">
+                                          <option selected value="AUTO">AUTO</option>
+                                          <option value="NOTAUTO">Принять заданные</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>k0M1</b> - Zone 1 ZSC Factor Magnitude
+                              </td>
+                              <td>
+                                    <input name="K0M1" class="common" type="number" min=0 max=10 step=0.001 value=0
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>k0A1</b> - Zone 1 ZSC Factor Angle (deg)
+                              </td>
+                              <td>
+                                    <input name="K0A1" class="common" type="number" min=-179.99 max=180 step=0.01
+                                          value=0 title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z1MAG</b> - Импенданс прямой последовательности линии
+                              </td>
+                              <td>
+                                    <input name="Z1MAG" class="common" type="number" min=0.05 max=255 step=0.01
+                                          value=7.8 title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z1ANG</b> - Угол импенданса прямой последовательности линии
+                              </td>
+                              <td>
+                                    <input name="Z1ANG" class="common" type="number" min=5 max=90 step=0.01 value=84
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z0MAG</b> - Импенданс нулевой последовательности линии
+                              </td>
+                              <td>
+                                    <input name="Z0MAG" class="common" type="number" min=0.05 max=255 step=0.01
+                                          value=7.8 title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z0ANG</b> - Угол импенданса нулевой последовательности линии
+                              </td>
+                              <td>
+                                    <input name="Z0ANG" class="common" type="number" min=5 max=90 step=0.01 value=81.5
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>TANGP</b> - Угол наклона верхней линии полигональной характеристики (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input name="TANGP" class="common" type="number" min=-40 max=40 step=0.1 value=0
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>TANGG</b> - Угол наклона верхней линии полигональной характеристики (фаза-земля)
+                              </td>
+                              <td>
+                                    <input name="TANGG" class="common" type="number" min=-40 max=40 step=0.1 value=0
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+
+
+
+                  </table>
+
+            </div>
+            <hr>
+            <div id="ELOAD">
+                  <p><u>Учет нагрузки</u><b></b></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>ZLF</b> - сопротивление нагрузки "прямо"
+                              </td>
+                              <td>
+                                    <input name="ZLF_LOAD" class="common" type="number" min=0.05 max=64 step=0.01
+                                          value=9.22 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>ZLR</b> - сопротивление нагрузки "назад"
+                              </td>
+                              <td>
+                                    <input name="ZLR_LOAD" class="common" type="number" min=0.05 max=64 step=0.01
+                                          value=9.22 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>PLAF</b>- угол нагрузки "прямо"
+                              </td>
+                              <td>
+                                    <input name="PLAF_LOAD" class="common" type="number" min=-90 max=90 step=0.1
+                                          value=30 title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>PLAR</b>- угол нагрузки "назад"
+                              </td>
+                              <td>
+                                    <input name="PLAR_LOAD" class="common" type="number" min=90 max=270 step=0.1
+                                          value=150 title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                  </table>
+
+            </div>
+            <hr>
+            <div id="ZONEMHOPHASE">
+                  <p><u>ДЗ (фаза-фаза) с круговой характеристикой<b> Mho Phase Distance Element Reach</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Z1MP</b> - сопротивление Zone 1
+                              </td>
+                              <td>
+                                    <input name="Z1MP" class="ZONEMHOPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=6.24 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z2MP</b> - сопротивление Zone 2
+                              </td>
+                              <td>
+                                    <input name="Z2MP" class="ZONEMHOPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=9.36 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z3MP</b> - сопротивление Zone 3
+                              </td>
+                              <td>
+                                    <input name="Z3MP" class="ZONEMHOPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=1.87 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z4MP</b> - сопротивление Zone 4
+                              </td>
+                              <td>
+                                    <input name="Z4MP" class="ZONEMHOPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=11 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z5MP</b> - сопротивление Zone 5
+                              </td>
+                              <td>
+                                    <input name="Z5MP" class="ZONEMHOPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=12 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <div id="ZONEQUADPHASE">
+                  <p><u>ДЗ (фаза-фаза) с полигональной характеристикой<b> Quad Phase Distance Element Reach</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>XP1</b> - сопротивление X Zone 1
+                              </td>
+                              <td>
+                                    <input name="XP1" class="ZONEQUADPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=10.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RP1</b> - сопротивление R Zone 1
+                              </td>
+                              <td>
+                                    <input name="RP1" class="ZONEQUADPHASE" type="number" min=0.05 max=50 step=0.01
+                                          value=12.48 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XP2</b> - сопротивление X Zone 2
+                              </td>
+                              <td>
+                                    <input name="XP2" class="ZONEQUADPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=12.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RP2</b> - сопротивление R Zone 2
+                              </td>
+                              <td>
+                                    <input name="RP2" class="ZONEQUADPHASE" type="number" min=0.05 max=50 step=0.01
+                                          value=18.72 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XP3</b> - сопротивление X Zone 3
+                              </td>
+                              <td>
+                                    <input name="XP3" class="ZONEQUADPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=13.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RP3</b> - сопротивление R Zone 3
+                              </td>
+                              <td>
+                                    <input name="RP3" class="ZONEQUADPHASE" type="number" min=0.05 max=50 step=0.01
+                                          value=3.64 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XP4</b> - сопротивление X Zone 4
+                              </td>
+                              <td>
+                                    <input name="XP4" class="ZONEQUADPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=14.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RP4</b> - сопротивление R Zone 4
+                              </td>
+                              <td>
+                                    <input name="RP4" class="ZONEQUADPHASE" type="number" min=0.05 max=50 step=0.01
+                                          value=31.2 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XP5</b> - сопротивление X Zone 5
+                              </td>
+                              <td>
+                                    <input name="XP5" class="ZONEQUADPHASE" type="number" min=0.05 max=64 step=0.01
+                                          value=15.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RP5</b> - сопротивление R Zone 5
+                              </td>
+                              <td>
+                                    <input name="RP5" class="ZONEQUADPHASE" type="number" min=0.05 max=50 step=0.01
+                                          value=50.0 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <div>
+                  <p><u>Выдержка времени ДЗ (фаза-фаза)<b> Phase Distance Element Time Delay</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Z1PD</b> - Таймер Zone 1
+                              </td>
+                              <td>
+                                    <input name="Z1PD" class="TIMERSPHASE" type="number" min=0 max=800 step=0.01 value=0
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z2PD</b> - Таймер Zone 2
+                              </td>
+                              <td>
+                                    <input name="Z2PD" class="TIMERSPHASE" type="number" min=0 max=800 step=0.01 value=1
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z3PD</b> - Таймер Zone 3
+                              </td>
+                              <td>
+                                    <input name="Z3PD" class="TIMERSPHASE" type="number" min=0 max=800 step=0.01 value=3
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z4PD</b> - Таймер Zone 4
+                              </td>
+                              <td>
+                                    <input name="Z4PD" class="TIMERSPHASE" type="number" min=0 max=800 step=0.01 value=4
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z5PD</b> - Таймер Zone 5
+                              </td>
+                              <td>
+                                    <input name="Z5PD" class="TIMERSPHASE" type="number" min=0 max=800 step=0.01 value=5
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+
+            <hr>
+            <div id="ZONEMHOGROUND">
+                  <p><u>ДЗ (фаза-земля) с круговой характеристикой<b> Mho Ground Distance Element Reach</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Z1MG</b> - сопротивление Zone 1
+                              </td>
+                              <td>
+                                    <input name="Z1MG" class="ZONEMHOGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=6.24 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z2MG</b> - сопротивление Zone 2
+                              </td>
+                              <td>
+                                    <input name="Z2MG" class="ZONEMHOGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=9.36 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z3MG</b> - сопротивление Zone 3
+                              </td>
+                              <td>
+                                    <input name="Z3MG" class="ZONEMHOGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=1.87 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z4MG</b> - сопротивление Zone 4
+                              </td>
+                              <td>
+                                    <input name="Z4MG" class="ZONEMHOGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=11 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z5MG</b> - сопротивление Zone 5
+                              </td>
+                              <td>
+                                    <input name="Z5MG" class="ZONEMHOGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=12 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <div id="ZONEQUADGROUND">
+                  <p><u>ДЗ (фаза-земля) с полигональной характеристикой<b> Quad Ground Distance Element Reach</b></u>
+                  </p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>XG1</b> - сопротивление X Zone 1
+                              </td>
+                              <td>
+                                    <input name="XG1" class="ZONEQUADGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=11.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RG1</b> - сопротивление R Zone 1
+                              </td>
+                              <td>
+                                    <input name="RG1" class="ZONEQUADGROUND" type="number" min=0.05 max=50 step=0.01
+                                          value=12.48 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XG2</b> - сопротивление X Zone 2
+                              </td>
+                              <td>
+                                    <input name="XG2" class="ZONEQUADGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=12.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RG2</b> - сопротивление R Zone 2
+                              </td>
+                              <td>
+                                    <input name="RG2" class="ZONEQUADGROUND" type="number" min=0.05 max=50 step=0.01
+                                          value=18.72 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XG3</b> - сопротивление X Zone 3
+                              </td>
+                              <td>
+                                    <input name="XG3" class="ZONEQUADGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=13.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RG3</b> - сопротивление R Zone 3
+                              </td>
+                              <td>
+                                    <input name="RG3" class="ZONEQUADGROUND" type="number" min=0.05 max=50 step=0.01
+                                          value=3.64 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XG4</b> - сопротивление X Zone 4
+                              </td>
+                              <td>
+                                    <input name="XG4" class="ZONEQUADGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=14.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RG4</b> - сопротивление R Zone 4
+                              </td>
+                              <td>
+                                    <input name="RG4" class="ZONEQUADGROUND" type="number" min=0.05 max=50 step=0.01
+                                          value=31.2 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XG5</b> - сопротивление X Zone 5
+                              </td>
+                              <td>
+                                    <input name="XG5" class="ZONEQUADGROUND" type="number" min=0.05 max=64 step=0.01
+                                          value=15.00 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RG5</b> - сопротивление R Zone 5
+                              </td>
+                              <td>
+                                    <input name="RG5" class="ZONEQUADGROUND" type="number" min=0.05 max=50 step=0.01
+                                          value=50.0 title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <div>
+                  <p><u>Выдержка времени ДЗ (фаза-земля)<b> Ground Distance Element Time Delay</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Z1GD</b> - Таймер Zone 1
+                              </td>
+                              <td>
+                                    <input name="Z1GD" class="TIMERSGROUND" type="number" min=0 max=800 step=0.01
+                                          value=0 title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z2GD</b> - Таймер Zone 2
+                              </td>
+                              <td>
+                                    <input name="Z2GD" class="TIMERSGROUND" type="number" min=0 max=800 step=0.01
+                                          value=1 title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z3GD</b> - Таймер Zone 3
+                              </td>
+                              <td>
+                                    <input name="Z3GD" class="TIMERSGROUND" type="number" min=0 max=800 step=0.01
+                                          value=3 title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z4GD</b> - Таймер Zone 4
+                              </td>
+                              <td>
+                                    <input name="Z4GD" class="TIMERSGROUND" type="number" min=0 max=800 step=0.01
+                                          value=4 title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z5GD</b> - Таймер Zone 5
+                              </td>
+                              <td>
+                                    <input name="Z5GD" class="TIMERSGROUND" type="number" min=0 max=800 step=0.01
+                                          value=5 title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+
+            <!-- <p> <input class="Z1" type="checkbox" name="ZG_EN1" value="on" checked><b>21Q1.ZG.En</b>- ввод
+                  контура
+                  (фаза-земля)
+            </p>
+            <p> <input class="Z1" type="checkbox" name="ZP_EN1" value="on" checked><b>21Q1.ZP.En</b>- ввод
+                  контура
+                  (фаза-фаза)</p>
+
+            </div> -->
+
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+            <hr>
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+            <button onclick='saveFile()'>Сохранить содержимое окна в файл "sel421.rio"</button>
+            <hr>
+
+      </form>
+
+      <p>
+            <a target="_blank" href="images/selx21_Load.png"><img src="images/selx21_Load.png" alt="Вырез нагрузки"
+                        title="Вырез нагрузки">Вырез нагрузки </a>
+
+            <a target="_blank" href="images/selx21_Phase.png"><img src="images/selx21_Phase.png"
+                        alt="Построение характеристики ДЗ (фаза-фаза)"
+                        title="Построение характеристики ДЗ (фаза-фаза)">Построение характеристики ДЗ (фаза-фаза) </a>
+            <a target="_blank" href="images/selx21_Ground.png"><img src="images/selx21_Ground.png"
+                        alt="Построение характеристики ДЗ (фаза-земля)"
+                        title="Построение характеристики ДЗ (фаза-земля)">Построение характеристики ДЗ (фаза-земля)
+            </a>
+            <a target="_blank" href="images/selx21_Kz0.png"><img src="images/selx21_Kz0.png"
+                        alt="Учет коэффициента компенсации нулевой последовательности"
+                        title="Учет коэффициента компенсации нулевой последовательности">Учет коэффициента компенсации
+                  нулевой последовательности </a>
+            <a target="_blank" href="images/selx21_QuadPhase.png"><img src="images/selx21_QuadPhase.png"
+                        alt="Построение полигональной характеристики ДЗ (фаза-фаза)"
+                        title="Построение полигональной характеристики ДЗ (фаза-фаза)">Построение полигональной
+                  характеристики ДЗ (фаза-фаза)
+            </a>
+            <a target="_blank" href="images/selx21_QuadGround.png"><img src="images/selx21_QuadGround.png"
+                        alt="Построение полигональной характеристики ДЗ (фаза-земля)"
+                        title="Построение полигональной характеристики ДЗ (фаза-земля)">Построение полигональной
+                  характеристики ДЗ (фаза-земля)
+                  <a target="_blank" href="images/selx21_PowerSwing.png"><img src="images/selx21_PowerSwing.png"
+                              alt="Качания мощности" title="Качания мощности">Качания мощности </a>
+
+            </a>
+      </p>
+
+      <!-- <input id='input' />
+      <button onclick='saveFile()'>Save</button>
+      <a href='' id='linkForSavingFile' style='display:none' /> -->
+
+
+</body>
+
+</html>

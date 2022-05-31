@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>REL-511</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="rel511.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()">
+            <h2><b>Уставки терминала REL-511 ABB</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub></b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b> I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr>
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+            <p><u>Общий критерий повреждений</u><b> (CFG)</b></p>
+            <div>
+                  <!-- <p> <b></b>Активация
+                        <select class="common" name="CFG_EN">
+                              <option selected value="true">ON</option>
+                              <option value="false">OFF</option>
+                        </select>
+                  </p> -->
+                  <p> <b>ARGLd</b>- угол нагрузки <input name="ARGLD" class="common" type="number" min=5 max=45 step=1
+                              value=35 title="Используйте числовой формат" required>&deg</p>
+                  <p> <b>RLd</b> - активное сопротивление нагрузки <input name="RLD" class="common" type="number"
+                              min=0.1 max=400 step=0.01 value=22.46 title="Используйте числовой формат"
+                              required>Ом/контур
+                  </p>
+                  <p> <b>X1RvPP</b> - сопротивление X1RvPP (Ph-Ph) "прямо" <input name="X1RVPP" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=1.2 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>X1FwPP</b> - сопротивление X1FwPP (Ph-Ph) "назад" <input name="X1FWPP" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=6.87 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input name="RFPP" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=12.11 title="Используйте числовой формат"
+                              required>Ом/контур
+                  </p>
+                  <!-- <p> <input class="common" type="checkbox" name="TPP_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Gnd)
+                  </p> -->
+                  <p> <b>X1RvPE</b> - сопротивление X1 (Ph-Gnd) "назад" <input name="X1RVPE" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=1.2 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>X1FwPE</b> - сопротивление X1 (Ph-Gnd) "прямо" <input name="X1FWPE" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=6.87 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>X0FwPE</b> - сопротивление X0 (Ph-Gnd) "прямо" <input name="X0FWPE" class="common"
+                              type="number" min=0.1 max=1200 step=0.01 value=13.2 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>X0RvPE</b> - сопротивление X0 (Ph-Gnd) "назад" <input name="X0RVPE" class="common"
+                              type="number" min=0.1 max=1200 step=0.01 value=7.09 title="Используйте числовой формат"
+                              required>Ом/фаза
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPE (Ph-Gnd) в месте КЗ <input name="RFPE" class="common"
+                              type="number" min=0.1 max=400 step=0.01 value=9.22 title="Используйте числовой формат"
+                              required>Ом/контур
+                  </p>
+                  <!-- <p> <input class="common" type="checkbox" name="TEN_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Gnd)
+                  </p> -->
+            </div>
+            <hr>
+
+            <p><u>Дистанционная защита (1 ступень) <b>Z1</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE1" name="MODE" class="ZONE1" onchange="changeZone(this)">
+                        <option value="FALSE">Выведено</option>
+                        <option value="NONDIRECTIONAL">Ненаправленная</option>
+                        <option selected value="FORWARD">Прямое</option>
+                        <option value="REVERSE">Обратное</option>
+
+                  </select>
+            </p>
+            <div id="ZONE1">
+                  <p><b>Operation PP</b> Активация зоны PP
+                        <select name="OPERATIONPP" class="ZONE1">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PP<sub></sub></b> - сопротивление X1 (Ph-Ph) <input class="ZONE1" name="X1PP" type="number"
+                              min=0 max=400 step=0.01 value=0.6 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PP<sub></sub></b> - сопротивление R1 (Ph-Ph) <input class="ZONE1" name="R1PP" type="number"
+                              min=0 max=400 step=0.01 value=0.26 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input class="ZONE1" name="RFPP" type="number"
+                              min=0.1 max=400 step=0.01 value=0.65 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PP</sub></b> - время работы tPP<input class="ZONE1" name="TIMEPP" type="number"
+                              min=0 max=60 step=0.001 value=0 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE1" type="checkbox" name="TPP_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Ph)
+                  </p>
+
+                  <p><b>Operation PE</b> Активация зоны PE
+                        <select name="OPERATIONPE" class="ZONE1">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PE<sub></sub></b> - сопротивление X1 (Ph-Gnd) <input class="ZONE1" name="X1PE" type="number"
+                              min=0 max=400 step=0.01 value=0.6 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PE<sub></sub></b> - сопротивление R1 (Ph-Gnd) <input class="ZONE1" name="R1PE" type="number"
+                              min=0 max=400 step=0.01 value=0.26 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>X0PE<sub></sub></b> - сопротивление X0 (Ph-Gnd) <input class="ZONE1" name="X0PE" type="number"
+                              min=0 max=1200 step=0.01 value=0.85 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R0PE<sub></sub></b> - сопротивление R0 (Ph-Gnd) <input class="ZONE1" name="R0PE" type="number"
+                              min=0 max=1200 step=0.01 value=0.37 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPP (Ph-Gnd) в месте КЗ <input class="ZONE1" name="RFPE"
+                              type="number" min=0.1 max=400 step=0.01 value=1.75 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PE</sub></b> - время работы tPE <input class="ZONE1" name="TIMEPE" type="number"
+                              min=0 max=60 step=0.001 value=0 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE1" type="checkbox" name="TPE_EN" value="on" checked><b>Timer tPE</b>- ввод
+                        контура (Ph-Gnd)
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (2 ступень) <b>Z2</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE2" name="MODE" class="ZONE2" onchange="changeZone(this)">
+                        <option value="FALSE">Выведено</option>
+                        <option value="NONDIRECTIONAL">Ненаправленная</option>
+                        <option selected value="FORWARD">Прямое</option>
+                        <option value="REVERSE">Обратное</option>
+                  </select>
+            </p>
+            <div id="ZONE2">
+                  <p><b>Operation PP</b> Активация зоны PP
+                        <select name="OPERATIONPP" class="ZONE2">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PP<sub></sub></b> - сопротивление X1 (Ph-Ph) <input class="ZONE2" name="X1PP" type="number"
+                              min=0 max=400 step=0.01 value=1.2 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PP<sub></sub></b> - сопротивление R1 (Ph-Ph) <input class="ZONE2" name="R1PP" type="number"
+                              min=0 max=400 step=0.01 value=0.7 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input class="ZONE2" name="RFPP" type="number"
+                              min=0.1 max=400 step=0.01 value=2.1 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>Timer t<sub>1PP</sub></b> - время работы tPP<input class="ZONE2" name="TIMEPP" type="number"
+                              min=0 max=60 step=0.001 value=0.6 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE2" type="checkbox" name="TPP_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Ph)
+                  </p>
+                  <p><b>Operation PE</b> Активация зоны PE
+                        <select name="OPERATIONPE" class="ZONE2">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PE<sub></sub></b> - сопротивление X1 (Ph-Gnd) <input class="ZONE2" name="X1PE" type="number"
+                              min=0 max=400 step=0.01 value=1.2 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PE<sub></sub></b> - сопротивление R1 (Ph-Gnd) <input class="ZONE2" name="R1PE" type="number"
+                              min=0 max=400 step=0.01 value=0.7 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>X0PE<sub></sub></b> - сопротивление X0 (Ph-Gnd) <input class="ZONE2" name="X0PE" type="number"
+                              min=0 max=1200 step=0.01 value=6.7 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R0PE<sub></sub></b> - сопротивление R0 (Ph-Gnd) <input class="ZONE2" name="R0PE" type="number"
+                              min=0 max=1200 step=0.01 value=1.9 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPP (Ph-Gnd) в месте КЗ <input class="ZONE2" name="RFPE"
+                              type="number" min=0.1 max=400 step=0.01 value=3.2 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PE</sub></b> - время работы tPE <input class="ZONE2" name="TIMEPE" type="number"
+                              min=0 max=60 step=0.001 value=0.6 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE2" type="checkbox" name="TPE_EN" value="on" checked><b>Timer tPE</b>- ввод
+                        контура (Ph-Gnd)
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (3 ступень) <b>Z3</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE3" name="MODE" class="ZONE3" onchange="changeZone(this)">
+                        <option value="FALSE">Выведено</option>
+                        <option value="NONDIRECTIONAL">Ненаправленная</option>
+                        <option selected value="FORWARD">Прямое</option>
+                        <option value="REVERSE">Обратное</option>
+                  </select>
+            </p>
+            <div id="ZONE3">
+                  <p><b>Operation PP</b> Активация зоны PP
+                        <select name="OPERATIONPP" class="ZONE3">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PP<sub></sub></b> - сопротивление X1 (Ph-Ph) <input class="ZONE3" name="X1PP" type="number"
+                              min=0 max=400 step=0.01 value=6.24 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R1PP<sub></sub></b> - сопротивление R1 (Ph-Ph) <input class="ZONE3" name="R1PP" type="number"
+                              min=0 max=400 step=0.01 value=3.74 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input class="ZONE3" name="RFPP" type="number"
+                              min=0.1 max=400 step=0.01 value=4.58 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PP</sub></b> - время работы tPP<input class="ZONE3" name="TIMEPP" type="number"
+                              min=0 max=60 step=0.001 value=5.1 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE3" type="checkbox" name="TPP_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Ph)
+                  </p>
+                  <p><b>Operation PE</b> Активация зоны PE
+                        <select name="OPERATIONPE" class="ZONE3">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PE<sub></sub></b> - сопротивление X1 (Ph-Gnd) <input class="ZONE3" name="X1PE" type="number"
+                              min=0 max=400 step=0.01 value=6.24 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R1PE<sub></sub></b> - сопротивление R1 (Ph-Gnd) <input class="ZONE3" name="R1PE" type="number"
+                              min=0 max=400 step=0.01 value=3.74 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>X0PE<sub></sub></b> - сопротивление X0 (Ph-Gnd) <input class="ZONE3" name="X0PE" type="number"
+                              min=0 max=1200 step=0.01 value=23.45 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R0PE<sub></sub></b> - сопротивление R0 (Ph-Gnd) <input class="ZONE3" name="R0PE" type="number"
+                              min=0 max=1200 step=0.01 value=2.84 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPP (Ph-Gnd) в месте КЗ <input class="ZONE3" name="RFPE"
+                              type="number" min=0.1 max=400 step=0.01 value=5.8 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PE</sub></b> - время работы tPE <input class="ZONE3" name="TIMEPE" type="number"
+                              min=0 max=60 step=0.001 value=5.1 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE3" type="checkbox" name="TPE_EN" value="on" checked><b>Timer tPE</b>- ввод
+                        контура (Ph-Gnd)
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (4 ступень) <b>Z4</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE4" name="MODE" class="ZONE4" onchange="changeZone(this)">
+                        <option value="FALSE">Выведено</option>
+                        <option value="NONDIRECTIONAL">Ненаправленная</option>
+                        <option selected value="FORWARD">Прямое</option>
+                        <option value="REVERSE">Обратное</option>
+                  </select>
+            </p>
+            <div id="ZONE4">
+                  <p><b>Operation PP</b> Активация зоны PP
+                        <select name="OPERATIONPP" class="ZONE4">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PP<sub></sub></b> - сопротивление X1 (Ph-Ph) <input class="ZONE4" name="X1PP" type="number"
+                              min=0 max=400 step=0.01 value=1.1 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PP<sub></sub></b> - сопротивление R1 (Ph-Ph) <input class="ZONE4" name="R1PP" type="number"
+                              min=0 max=400 step=0.01 value=0.5 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input class="ZONE4" name="RFPP" type="number"
+                              min=0.1 max=400 step=0.01 value=1 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>Timer t<sub>1PP</sub></b> - время работы tPP<input class="ZONE4" name="TIMEPP" type="number"
+                              min=0 max=60 step=0.001 value=0 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE4" type="checkbox" name="TPP_EN" value="on"><b>Timer tPP</b>- ввод
+                        контура (Ph-Ph)
+                  </p>
+                  <p><b>Operation PE</b> Активация зоны PE
+                        <select name="OPERATIONPE" class="ZONE4">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PE<sub></sub></b> - сопротивление X1 (Ph-Gnd) <input class="ZONE4" name="X1PE" type="number"
+                              min=0 max=400 step=0.01 value=1 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PE<sub></sub></b> - сопротивление R1 (Ph-Gnd) <input class="ZONE4" name="R1PE" type="number"
+                              min=0 max=400 step=0.01 value=0.5 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>X0PE<sub></sub></b> - сопротивление X0 (Ph-Gnd) <input class="ZONE4" name="X0PE" type="number"
+                              min=0 max=1200 step=0.01 value=3.5 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R0PE<sub></sub></b> - сопротивление R0 (Ph-Gnd) <input class="ZONE4" name="R0PE" type="number"
+                              min=0 max=1200 step=0.01 value=0.7 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPP (Ph-Gnd) в месте КЗ <input class="ZONE4" name="RFPE"
+                              type="number" min=0.1 max=400 step=0.01 value=2.2 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PE</sub></b> - время работы tPE <input class="ZONE4" name="TIMEPE" type="number"
+                              min=0 max=60 step=0.001 value=0 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE4" type="checkbox" name="TPE_EN" value="on"><b>Timer tPE</b>- ввод
+                        контура (Ph-Gnd)
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (5 ступень) <b>Z5</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE5" name="MODE" class="ZONE5" onchange="changeZone(this)">
+                        <option value="FALSE">Выведено</option>
+                        <option value="NONDIRECTIONAL">Ненаправленная</option>
+                        <option value="FORWARD">Прямое</option>
+                        <option selected value="REVERSE">Обратное</option>
+                  </select>
+            </p>
+            <div id="ZONE5">
+                  <p><b>Operation PP</b> Активация зоны PP
+                        <select name="OPERATIONPP" class="ZONE5">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PP<sub></sub></b> - сопротивление X1 (Ph-Ph) <input class="ZONE5" name="X1PP" type="number"
+                              min=0 max=400 step=0.01 value=1 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PP<sub></sub></b> - сопротивление R1 (Ph-Ph) <input class="ZONE5" name="R1PP" type="number"
+                              min=0 max=400 step=0.01 value=0.6 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>RFPP</b> - сопротивление RFPP (Ph-Ph) в месте КЗ <input class="ZONE5" name="RFPP" type="number"
+                              min=0.1 max=400 step=0.01 value=1 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>Timer t<sub>1PP</sub></b> - время работы tPP<input class="ZONE5" name="TIMEPP" type="number"
+                              min=0 max=60 step=0.001 value=0.3 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE5" type="checkbox" name="TPP_EN" value="on" checked><b>Timer tPP</b>- ввод
+                        контура (Ph-Ph)
+                  </p>
+                  <p><b>Operation PE</b> Активация зоны PE
+                        <select name="OPERATIONPE" class="ZONE5">
+                              <option value="FALSE">Off</option>
+                              <option selected value="TRUE">Вкл</option>
+                        </select>
+                  </p>
+                  <p> <b>X1PE<sub></sub></b> - сопротивление X1 (Ph-Gnd) <input class="ZONE5" name="X1PE" type="number"
+                              min=0 max=400 step=0.01 value=1 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PE<sub></sub></b> - сопротивление R1 (Ph-Gnd) <input class="ZONE5" name="R1PE" type="number"
+                              min=0 max=400 step=0.01 value=0.7 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>X0PE<sub></sub></b> - сопротивление X0 (Ph-Gnd) <input class="ZONE5" name="X0PE" type="number"
+                              min=0 max=1200 step=0.01 value=6.4 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>R0PE<sub></sub></b> - сопротивление R0 (Ph-Gnd) <input class="ZONE5" name="R0PE" type="number"
+                              min=0 max=1200 step=0.01 value=2.51 title="Используйте числовой формат" required>Ом/контур
+                  </p>
+                  <p> <b>RFPE</b> - сопротивление RFPP (Ph-Gnd) в месте КЗ <input class="ZONE5" name="RFPE"
+                              type="number" min=0.1 max=400 step=0.01 value=1.53 title="Используйте числовой формат"
+                              required>Ом/контур</p>
+                  <p> <b>Timer t<sub>1PE</sub></b> - время работы tPE <input class="ZONE5" name="TIMEPE" type="number"
+                              min=0 max=60 step=0.001 value=0.3 title="Используйте числовой формат" required>мс
+                  </p>
+                  <p> <input class="ZONE5" type="checkbox" name="TPE_EN" value="on" checked><b>Timer tPE</b>- ввод
+                        контура (Ph-Gnd)
+                  </p>
+            </div>
+            <hr>
+
+            <!-- <p> <input class="Z1" type="checkbox" name="ZG_EN1" value="on" checked><b>21Q1.ZG.En</b>- ввод
+                  контура
+                  (Ph-Gnd)
+            </p>
+            <p> <input class="Z1" type="checkbox" name="ZP_EN1" value="on" checked><b>21Q1.ZP.En</b>- ввод
+                  контура
+                  (Ph-Ph)</p>
+
+            </div> -->
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+      </form>
+      <p>
+            <a target="_blank" href="images/rel511_Common2.png"><img src="images/rel511_Common2.png"
+                        alt="Характеристики дистанционных органов"
+                        title="Характеристики дистанционных органов">Характеристики дистанционных органов </a>
+            <a target="_blank" href="images/rel511_Common.png"><img src="images/rel511_Common.png"
+                        alt="Характеристики срабатывание ДЗ" title="Характеристики срабатывание ДЗ">Характеристики
+                  срабатывание ДЗ </a>
+            <a target="_blank" href="images/rel511_Common1.png"><img src="images/rel511_Common1.png"
+                        alt="Зоны ограничения срабатывания ДЗ" title="Зоны ограничения срабатывания ДЗ">Зоны ограничения
+                  срабатывания ДЗ </a>
+            <a target="_blank" href="images/rel511_Phase.png"><img src="images/rel511_Phase.png"
+                        alt="Характеристика срабатывания ДЗ (фаза-фаза)"
+                        title="Характеристика срабатывания ДЗ (фаза-фаза)">Характеристика срабатывания ДЗ
+                  (фаза-фаза) </a>
+            <a target="_blank" href="images/rel511_Ground.png"><img src="images/rel511_Ground.png"
+                        alt="Характеристика срабатывания ДЗ (фаза-земля)"
+                        title="Характеристика срабатывания ДЗ (фаза-земля)">Характеристика срабатывания ДЗ
+                  (фаза-земля) </a>
+
+      </p>
+
+
+</body>
+
+</html>

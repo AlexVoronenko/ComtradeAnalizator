@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Просмотр CFG файла</title>
+   <link rel="stylesheet" href="CSS/main.css">
+   <link rel="stylesheet" href="CSS/cfgfile.css">
+</head>
+
+<body>
+   <header>
+      <h1>Анализ файлов COMTRADE - *.CFG</h1>
+   </header>
+
+   <div id="out">
+      <p>
+         Тип переменной (возможные значения):<br>
+         <b>crit</b> - обязательный параметр <b>nCrit</b> - необязательный параметр<br>
+         <b>char</b>- символ; <b>float</b> - вещественная переменная формата <em>[+-]dd[.]dddd[E[+-]ddd]</em><br>
+         <b>int</b> - integer (целое число); <b>alNum</b>- буквенно-численное значение; <b>num</b>- числовое
+         значение<br>
+         <b>[1...9999999]</b> - диапазон возможных значений; <b>minL/maxL</b>- минимальная/максимальная символов<br>
+         <b>(XX.XX.XXXX)</b>- формат данных; <b>{P,S}</b>- возможные значения
+         длина
+      </p>
+   </div>
+
+   <div>
+      <input id="files" type="file" onchange="readFiles(this)" accept=".cfg" class="custom-file-input">
+      <!-- <progress max="100" value="0">Загружено на </progress> -->
+      <!-- <input type="button" value="Проверка структуры CFG файла" onclick="validateCfg()"> -->
+      <!-- <input type="button" value="Создание CFG файла из DAT файла" onclick="createCfg()"> -->
+      <!-- <input type="button" value="Изменение кодировки DOS->UTF-8" onclick="dos_UTF()"> -->
+      <!-- <input type="button" value="Сохранить в COMTRADE2013" onclick="saveComtrade2013()"> -->
+      <!-- <input type="button" value="DAT" onclick='window.open("datFile.html");'> -->
+      <!-- <input type="button" value="CFG+DAT" onclick='window.open("comtrade.html");'> -->
+      <!-- <input type="button" value="RIO" onclick='window.open("rioFile.html");'> -->
+      <!-- <input type="button" value="INF" onclick='window.open("infFile.html");'> -->
+      <!-- <input type="button" value="HDR" onclick='window.open("hdrFile.html");'> -->
+   </div>
+   <br>
+   <table id="table">
+      <!-- <caption>Таблица содержимого CFG файла</caption> -->
+      <thead>
+         <tr>
+            <th>№</th>
+            <th>Содержимое строки</th>
+            <th>Значение</th>
+            <th>Описание</th>
+            <th>Переменная IEC</th>
+            <th>Тип переменной</th>
+         </tr>
+      </thead>
+      <tbody>
+         <!-- <tr>
+            <th>1</th>
+            <td>230 Sofe97 633 =F106_7SA522 V4.7 Var,000356,1997</td>
+            <td>230 Sofe97 633 =F106_7SA522 V4.7 Var <br>
+               000356<br>
+               1997</td>
+            <td>Имя/ место установки<br>
+               Номер регистратора<br>
+               Версия Comtrade файла</td>
+            <td>Station_name<br>
+               rec_dev_id<br>
+               rev_year</td>
+            <td>nCrit, alNum, maxL=0, minL=64<br>
+               crit<br>
+               crit</td>
+         </tr>
+
+         <tr>
+            <th>2</th>
+            <td>34,8A,26D</td>
+            <td> 34<br>
+               8<br>
+               26</td>
+            <td>Общее число каналов<br>
+               Число аналоговых каналов<br>
+               Число дискретных каналов</td>
+            <td>TT<br>
+               #AA+<br>
+               #DD+</td>
+            <td>crit<br>
+               crit<br>
+               crit</td>
+         </tr> -->
+
+         <!-- </tbody>
+      <tfoot>
+         <th>№ п/п</th>
+      </tfoot> -->
+
+   </table>
+
+   <script src="JS/comtradeLib.js"></script>
+   <script src="JS/cfgFile.js"></script>
+</body>
+
+</html>

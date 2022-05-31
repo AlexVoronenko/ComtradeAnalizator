@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Micom P446</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="micomP54x.js"></script>
+</head>
+
+<body>
+      <!-- <form class="needValivations" onsubmit="return formValidation()"> -->
+      <h2><b>Уставки терминала MICOM P54x Schnider Electric</b></h2>
+      <hr>
+      <div>
+            <table>
+                  <tr>
+                        <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                        <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1 value=110000
+                                    title="Используйте числовой формат" required> В</td>
+                  </tr>
+
+                  <tr>
+                        <td><b>U<sub>н втор</sub></b> - вторичное напряжение ТН </td>
+                        <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                    title="Используйте числовой формат" required> В</td>
+                  </tr>
+                  <tr>
+                        <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                        <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                    title="Используйте числовой формат" required> кА</td>
+                  </tr>
+                  <tr>
+                        <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                        <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                    title="Используйте числовой формат" required> A</td>
+                  </tr>
+                  <!-- <tr>
+                        <td><b>f<sub>ном</sub></b> - частота сети</td>
+                        <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                  value=50 title="Используйте числовой формат" required> Гц</td>
+                  </tr> -->
+                  <tr>
+                        <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                        </td>
+                        <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                    title="Используйте числовой формат" required></td>
+                  </tr>
+                  <tr>
+                        <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                        <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                    title="Используйте числовой формат" required></td>
+                  </tr>
+                  <tr>
+                        <td> <b>Место установки ТН</b></td>
+                        <td><select class="main" name="PTCONN">
+                                    <option value="LINE">на линии</option>
+                                    <option selected value="BUS">на шинах</option>
+                              </select></td>
+                  </tr>
+                  <tr>
+                        <td>
+                              <p><b>Направление ТТ</b>
+                        </td>
+                        <td> <select class="main" name="CTSTARPOINT">
+                                    <option value="BUS">в шины</option>
+                                    <option selected value="LINE">в линию</option>
+                              </select></td>
+                  </tr>
+                  <tr>
+                        <td><b>Угол линии</b> </td>
+                        <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                    title="Используйте числовой формат" required>&deg</td>
+                  </tr>
+                  <tr>
+                        <td><b>Длина линии</b></td>
+                        <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                    title="Используйте числовой формат" required> км</td>
+                  </tr>
+                  <tr>
+                        <td><b>Уставки заданы</b></td>
+                        <td><select disabled class="main" name="IMPRIM">
+                                    <option value="YES">в первичных</option>
+                                    <option selected value="NO">во вторичных</option>
+                              </select>величинах</td>
+                  </tr>
+
+            </table>
+      </div>
+      <hr>
+      <p><u>Настройка ДЗ</u><b> DISTANCE SETUP</b></p>
+      <table>
+            <tr>
+                  <td>
+                        <b>Setting Mode</b>- Режим работы
+                  </td>
+                  <td>
+                        <select name="MODE" class="common" onchange="changeMode(this)">
+                              <option value="SIMPLE">Simple</option>
+                              <option selected value="ADVANCED">Advanced</option>
+                        </select>
+                  </td>
+            </tr>
+            <tr>
+                  <td>
+                        <b>Полное сопротивление линии</b>
+                  </td>
+                  <td>
+                        <input name="LINELEIMP" class="common" type="number" min=0.05 max=200 step=0.01 value=10
+                              title="Используйте числовой формат" required> Ом
+                  </td>
+            </tr>
+            <tr>
+                  <td>
+                        <b>Коэффициент компенсации kZN Res Comp </b>
+                  </td>
+                  <td>
+                        <input name="KZRESCOMP" class="common" type="number" min=0 max=10 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                  </td>
+            </tr>
+            <tr>
+                  <td>
+                        <b>Угол компенсации kZN Res Angle </b>
+                  </td>
+                  <td>
+                        <input name="KZRESANGLE" class="common" type="number" min=-180 max=90 step=1 value=0
+                              title="Используйте числовой формат" required> &deg
+                  </td>
+            </tr>
+            <tr>
+                  <td>
+
+                  </td>
+                  <td>
+
+                  </td>
+            </tr>
+      </table>
+      <!-- <p><b>Mutal Comp</b>- Взаимоиндукция
+                  <select name="MUTAL" class="main" onchange="changeZone(this)">
+                        <option selected value="false">Disabled</option>
+                        <option value="true">Enabled</option>
+                  </select>
+            </p>
+            <div hidden id="MUTAL">
+                  <p> <b>Коэффициент комп. kZm Mutal Set. </b> <input name="KZMCOMP" class="main" type="number" min=0
+                              max=10 step=0.01 value=1 title="Используйте числовой формат" required> Ом
+                  <p> <b>Угол комп. kZm Mutal Angle </b> <input name="KZMANGLE" class="main" type="number" min=-180
+                              max=90 step=1 value=0 title="Используйте числовой формат" required> &deg
+                  <p> <b>Кратность тока нейтрали Mutal Cut Off </b> <input name="KZMCUT" class="main" type="number"
+                              min=0 max=2 step=0.1 value=0 title="Используйте числовой формат" required>
+            </div> -->
+      <hr>
+      <p><b>Load Blinders</b>- Вырез нагрузки
+            <select class="common" name="LOAD_EN" onchange="changeZone(this)">
+                  <option selected value="true">Enabled</option>
+                  <option value="false">Disabled</option>
+            </select>
+      </p>
+
+      <div id="LOAD_EN">
+            <u>Вырез нагрузки</u><b> Load Blinders</b>
+            <table>
+                  <tr>
+                        <td>
+                              <b>Z&lt Binder Imp</b> - сопротивление нагрузки
+                        </td>
+                        <td>
+                              <input name="Z_LOAD" class="common" type="number" min=0.1 max=500 step=0.01 value=15
+                                    title="Используйте числовой формат" required>Ом/фаза
+                        </td>
+                  </tr>
+                  <tr>
+                        <td>
+                              <b>Load/B Angle</b>- угол режима нагрузки
+                        </td>
+                        <td>
+                              <input name="ANG_LOAD" class="common" type="number" min=15 max=65 step=1 value=45
+                                    title="Используйте числовой формат" required>&deg
+                        </td>
+                  </tr>
+                  <tr>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                  </tr>
+            </table>
+      </div>
+
+
+      <hr>
+      <p><u>Направление ДЗ</u><b> Delta Directional</b></p>
+      <div> <b>Dir. Status</b>- Режим работы
+            <select class="common" name="DIR_DZ_EN" onchange="changeZone(this)">
+                  <option selected value="false">Disabled</option>
+                  <option value="true">Enabled</option>
+            </select>
+      </div>
+
+      <div hidden id="DIR_DZ_EN">
+            <!-- <div> <b>AidedDeltaStatus</b>- Режим работы
+                        <select class="common" name="STATUS">
+                              <option selected value="DISABLED">Disabled</option>
+                              <option value="PHASEONLY">Phase Only</option>
+                              <option value="GROUNDONLY">Groung Only</option>
+                              <option value="PHASEGROUND">Phase and Ground</option>
+                        </select>
+                  </div> -->
+            <p> <b>Dir. Char Angle</b> - угол &#966<sub>МЧ</sub> <input name="DIR_CHAR_ANGLE" class="common"
+                        type="number" min=0 max=90 step=1 value=60 title="Используйте числовой формат" required>&deg
+            </p>
+            <!-- <p> <b>Dir. V Fwd</b>- минимальное изменение напряжения при которой разрешается выбор
+                        направления «Вперед» <input name="DIR_V_FWD" class="common" type="number" min=1 max=30 step=0.1
+                              value=5 title="Используйте числовой формат" required>В</p>
+                  <p> <b>Dir. V Rev</b>- минимальное изменение напряжения при которой разрешается выбор
+                        направления «Назад» <input name="DIR_V_REV" class="common" type="number" min=0.5 max=30 step=0.1
+                              value=4 title="Используйте числовой формат" required>В</p>
+                  <p> <b>Dir. I Fwd</b>- минимальное изменение тока при которой разрешается выбор
+                        направления «Вперед» <input name="DIR_I_FWD" class="common" type="number" min=0.1 max=10
+                              step=0.01 value=0.1 title="Используйте числовой формат" required>А</p>
+                  <p> <b>Dir. I Rev</b>- минимальное изменение тока при которой разрешается выбор
+                        направления «Назад» <input name="DIR_I_REV" class="common" type="number" min=0.05 max=10
+                              step=0.01 value=0.08 title="Используйте числовой формат" required>А</p> -->
+
+      </div>
+      <hr>
+
+      <div hidden id="simple">
+            <p><u>ДЗ (фаза-фаза)</u><b> PHASE DISTANCE</b></p>
+            <div> <b>Phase. Chars</b>- Характеристика
+                  <select name="SIMPLEPHASE" class="common" onchange="changeChars(this)">
+                        <option selected value="DISABLED">Disabled</option>
+                        <option value="SIMPLEPHASEMHO">Mho</option>
+                        <option value="SIMPLEPHASEQUAD">Quad</option>
+                  </select>
+
+            </div>
+
+            <div hidden id="SIMPLEPHASEMHO">
+                  <p><b>Zone 1 Ph Status</b>- ДЗ зона 1
+                        <select name="ZSPHM1" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHM1">
+                        <p> <b>Z1 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="Z1" type="number"
+                                    min=10 max=1000 step=1 value=80 title="Используйте числовой формат" required>%</p>
+                  </div>
+                  <p><b>Zone 2 Ph Status</b>- ДЗ зона 2
+                        <select name="ZSPHM2" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHM2">
+                        <p> <b>Z2 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="Z2" type="number"
+                                    min=10 max=1000 step=1 value=150 title="Используйте числовой формат" required>%</p>
+                  </div>
+                  <p><b>Zone 3 Ph Status</b>- ДЗ зона 3
+                        <select name="ZSPHM3" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHM3">
+                        <p> <b>Z3 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="Z3" type="number"
+                                    min=10 max=1000 step=1 value=250 title="Используйте числовой формат" required>%</p>
+
+                        <p><b>Zone 3 Ph Offset</b>- Смещение ДЗ зона 3
+                              <select name="ZSPHOFFSETENM3" class="ZSPHASEMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSPHOFFSETENM3">
+                              <p> <b>Z3 Ph. Rev Offset</b> - Смещение в 3 квадрант <input class="ZSPHASEMHO"
+                                          name="ZOFFSET3" type="number" min=10 max=1000 step=1 value=10
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                  </div>
+                  <p><b>Zone P Ph. Status</b>- ДЗ зона P
+                        <select name="ZSPHMP" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHMP">
+                        <p><b>Zone P Ph Dir</b>- Направление ДЗ зона P
+                              <select name="DIRP" class="ZSPHASEMHO">
+                                    <option selected value="FORWARD">Forward</option>
+                                    <option value="REVERSE">Reverse</option>
+                              </select>
+                        </p>
+                        <p> <b>ZP Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="ZP" type="number"
+                                    min=10 max=1000 step=1 value=200 title="Используйте числовой формат" required>%</p>
+                  </div>
+                  <p><b>Zone 4 Ph Status</b>- ДЗ зона 4
+                        <select name="ZSPHM4" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHM4">
+                        <p> <b>Z4 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="Z4" type="number"
+                                    min=10 max=1000 step=1 value=150 title="Используйте числовой формат" required>%</p>
+                  </div>
+                  <p><b>Zone Q Ph. Status</b>- ДЗ зона Q
+                        <select name="ZSPHMQ" class="ZSPHASEMHO" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHMQ">
+                        <p><b>Zone Q Ph. Dir</b>- Направление ДЗ зона Q
+                              <select name="DIRQ" class="ZSPHASEMHO">
+                                    <option selected value="FORWARD">Forward</option>
+                                    <option value="REVERSE">Reverse</option>
+                              </select>
+                        </p>
+                        <p> <b>ZQ Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEMHO" name="ZQ" type="number"
+                                    min=10 max=1000 step=1 value=200 title="Используйте числовой формат" required>%</p>
+                  </div>
+
+
+            </div>
+            <div hidden id="SIMPLEPHASEQUAD">
+                  <p><b>Quad Resistance</b>- Охват по R
+                        <select name="ZSPHRTYPE" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option selected value="PROPORTIONAL">Proportional</option>
+                              <option value="COMMON">Common</option>
+                        </select>
+                  </p>
+                  <p> <b>Fault Resistance</b> - Сопротивление дуги <input class="ZSPHASEQUAD" name="ZFAULT"
+                              type="number" min=0.05 max=500 step=0.01 value=10 title="Используйте числовой формат"
+                              required>Ом</p>
+
+                  <p><b>Zone 1 Ph Status</b>- ДЗ зона 1
+                        <select name="ZSPHQ1" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQ1">
+                        <p> <b>Z2 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="Z1"
+                                    type="number" min=10 max=1000 step=1 value=80 title="Используйте числовой формат"
+                                    required>%</p>
+                  </div>
+                  <p><b>Zone 2 Ph Status</b>- ДЗ зона 2
+                        <select name="ZSPHQ2" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQ2">
+                        <p> <b>Z2 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="Z2"
+                                    type="number" min=10 max=1000 step=1 value=150 title="Используйте числовой формат"
+                                    required>%</p>
+                  </div>
+                  <p><b>Zone 3 Ph Status</b>- ДЗ зона 3
+                        <select name="ZSPHQ3" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQ3">
+                        <p> <b>Z3 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="Z3"
+                                    type="number" min=10 max=1000 step=1 value=250 title="Используйте числовой формат"
+                                    required>%</p>
+
+                        <p><b>Zone 3 Ph Offset</b>- Смещение ДЗ зона 3
+                              <select name="ZSPHOFFSETENQ3" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSPHOFFSETENQ3">
+                              <p> <b>Z3 Ph. Rev Offset</b> - Смещение в 3 квадрант <input class="ZSPHASEQUAD"
+                                          name="ZOFFSET3" type="number" min=10 max=1000 step=1 value=10
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                  </div>
+                  <p><b>Zone P Ph Status</b>- ДЗ зона P
+                        <select name="ZSPHQP" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQP">
+                        <p><b>Zone P Ph Dir</b>- Направление ДЗ зона P
+                              <select name="DIRP" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                                    <option selected value="FORWARD">Forward</option>
+                                    <option value="REVERSE">Reverse</option>
+                              </select>
+                        </p>
+                        <p> <b>ZP Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="ZP"
+                                    type="number" min=10 max=1000 step=1 value=200 title="Используйте числовой формат"
+                                    required>%</p>
+                  </div>
+                  <p><b>Zone 4 Ph Status</b>- ДЗ зона 4
+                        <select name="ZSPHQ4" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQ4">
+                        <p> <b>Z4 Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="Z4"
+                                    type="number" min=10 max=1000 step=1 value=150 title="Используйте числовой формат"
+                                    required>%</p>
+                  </div>
+                  <p><b>Zone Q Ph. Status</b>- ДЗ зона Q
+                        <select name="ZSPHQQ" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                              <option value="false">Disabled</option>
+                              <option selected value="true">Enabled</option>
+                        </select>
+                  </p>
+                  <div id="ZSPHQQ">
+                        <p><b>Zone Q Ph. Dir</b>- Направление ДЗ зона Q
+                              <select name="DIRQ" class="ZSPHASEQUAD" onchange="changeZone(this)">
+                                    <option value="FORWARD">Forward</option>
+                                    <option selected value="REVERSE">Reverse</option>
+                              </select>
+                        </p>
+                        <p> <b>ZQ Ph. Reach</b> - Полное сопротивление <input class="ZSPHASEQUAD" name="ZQ"
+                                    type="number" min=10 max=1000 step=1 value=200 title="Используйте числовой формат"
+                                    required>%</p>
+                  </div>
+
+
+            </div>
+            <hr>
+            <p><u>ДЗ (фаза-земля)</u><b> GROUND DISTANCE</b></p>
+            <div> <b>Ground. Chars</b>- Характеристика
+                  <select name="SIMPLEGROUND" class="common" onchange="changeChars(this)">
+                        <option selected value="DISABLED">Disabled</option>
+                        <option value="SIMPLEGROUNDMHO">Mho</option>
+                        <option value="SIMPLEGROUNDQUAD">Quad</option>
+                  </select>
+
+            </div>
+            <div>
+                  <div hidden id="SIMPLEGROUNDMHO">
+                        <p><b>Zone 1 Gnd Status</b>- ДЗ зона 1
+                              <select name="ZSGNDM1" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDM1">
+                              <p> <b>Z1 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="Z1"
+                                          type="number" min=10 max=1000 step=1 value=80
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 2 Gnd Status</b>- ДЗ зона 2
+                              <select name="ZSGNDM2" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDM2">
+                              <p> <b>Z2 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="Z2"
+                                          type="number" min=10 max=1000 step=1 value=150
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 3 Gnd Status</b>- ДЗ зона 3
+                              <select name="ZSGNDM3" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDM3">
+                              <p> <b>Z3 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="Z3"
+                                          type="number" min=10 max=1000 step=1 value=250
+                                          title="Используйте числовой формат" required>%</p>
+
+                              <p><b>Zone 3 Gnd Offset</b>- Смещение ДЗ зона 3
+                                    <select name="ZSGNDOFFSETENM3" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                          <option value="false">Disabled</option>
+                                          <option selected value="true">Enabled</option>
+                                    </select>
+                              </p>
+                              <div id="ZSGNDOFFSETENM3">
+                                    <p> <b>Z3 Gnd. Rev Offset</b> - Смещение в 3 квадрант <input class="ZSGROUNDMHO"
+                                                name="ZOFFSET3" type="number" min=10 max=1000 step=1 value=10
+                                                title="Используйте числовой формат" required>%</p>
+                              </div>
+                        </div>
+                        <p><b>Zone P Gnd Status</b>- ДЗ зона P
+                              <select name="ZSGNDMP" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDMP">
+                              <p><b>Zone P Gnd Dir</b>- Направление ДЗ зона P
+                                    <select name="DIRP" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                          <option selected value="FORWARD">Forward</option>
+                                          <option value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                              <p> <b>ZP Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="ZP"
+                                          type="number" min=10 max=1000 step=1 value=200
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 4 Gnd Status</b>- ДЗ зона 4
+                              <select name="ZSGNDM4" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDM4">
+                              <p> <b>Z4 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="Z4"
+                                          type="number" min=10 max=1000 step=1 value=150
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone Q Gnd Status</b>- ДЗ зона Q
+                              <select name="ZSGNDMQ" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDMQ">
+                              <p><b>Zone Q Gnd Dir</b>- Направление ДЗ зона Q
+                                    <select name="DIRQ" class="ZSGROUNDMHO" onchange="changeZone(this)">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                              <p> <b>ZQ Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDMHO" name="ZQ"
+                                          type="number" min=10 max=1000 step=1 value=200
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+
+
+                  </div>
+                  <div hidden id="SIMPLEGROUNDQUAD">
+                        <p><b>Quad Resistance</b>- Охват по R
+                              <select name="ZSGNDRTYPE" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option selected value="PROPORTIONAL">Proportional</option>
+                                    <option value="COMMON">Common</option>
+                              </select>
+                        </p>
+                        <p> <b>Fault Resistance</b> - Сопротивление дуги <input class="ZSGROUNDQUAD" name="ZFAULT"
+                                    type="number" min=0.05 max=500 step=0.01 value=10
+                                    title="Используйте числовой формат" required>Ом</p>
+
+                        <p><b>Zone 1 Gnd Status</b>- ДЗ зона 1
+                              <select name="ZSGNDQ1" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQ1">
+                              <p> <b>Z2 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="Z1"
+                                          type="number" min=10 max=1000 step=1 value=80
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 2 Gnd Status</b>- ДЗ зона 2
+                              <select name="ZSGNDQ2" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQ2">
+                              <p> <b>Z2 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="Z2"
+                                          type="number" min=10 max=1000 step=1 value=150
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 3 Gnd Status</b>- ДЗ зона 3
+                              <select name="ZSGNDQ3" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQ3">
+                              <p> <b>Z3 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="Z3"
+                                          type="number" min=10 max=1000 step=1 value=250
+                                          title="Используйте числовой формат" required>%</p>
+
+                              <p><b>Zone 3 Gnd Offset</b>- Смещение ДЗ зона 3
+                                    <select name="ZSGNDOFFSETENQ3" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                          <option value="false">Disabled</option>
+                                          <option selected value="true">Enabled</option>
+                                    </select>
+                              </p>
+                              <div id="ZSGNDOFFSETENQ3">
+                                    <p> <b>Z3 Gnd. Rev Offset</b> - Смещение в 3 квадрант <input class="ZSGROUNDQUAD"
+                                                name="ZOFFSET3" type="number" min=10 max=1000 step=1 value=10
+                                                title="Используйте числовой формат" required>%</p>
+                              </div>
+                        </div>
+                        <p><b>Zone P Gnd Status</b>- ДЗ зона P
+                              <select name="ZSGNDQP" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQP">
+                              <p><b>Zone P Gnd Dir</b>- Направление ДЗ зона P
+                                    <select name="DIRP" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                          <option selected value="FORWARD">Forward</option>
+                                          <option value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                              <p> <b>ZP Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="ZP"
+                                          type="number" min=10 max=1000 step=1 value=200
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone 4 Gnd Status</b>- ДЗ зона 4
+                              <select name="ZSGNDQ4" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQ4">
+                              <p> <b>Z4 Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="Z4"
+                                          type="number" min=10 max=1000 step=1 value=150
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                        <p><b>Zone Q Gnd Status</b>- ДЗ зона Q
+                              <select name="ZSGNDQQ" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZSGNDQQ">
+                              <p><b>Zone Q Gnd Dir</b>- Направление ДЗ зона Q
+                                    <select name="DIRQ" class="ZSGROUNDQUAD" onchange="changeZone(this)">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                              <p> <b>ZQ Gnd. Reach</b> - Полное сопротивление <input class="ZSGROUNDQUAD" name="ZQ"
+                                          type="number" min=10 max=1000 step=1 value=200
+                                          title="Используйте числовой формат" required>%</p>
+                        </div>
+                  </div>
+            </div>
+
+      </div>
+
+      <div id="anvanced">
+            <p><u>ДЗ (фаза-фаза)</u><b> PHASE DISTANCE</b></p>
+            <div> <b>Phase. Chars</b>- Характеристика
+                  <select name="ADVANCEDPHASE" class="common" onchange="changeChars(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="ADVANCEDPHASEMHO">Mho</option>
+                        <option selected value="ADVANCEDPHASEQUAD">Quad</option>
+                  </select>
+
+                  <div id="ADVANCEDPHASE">
+                        <p><b>Zone 1 Ph Status</b>- ДЗ (фаза-фаза) зона 1
+                              <select name="ZPH1" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <p><b>Zone 2 Ph Status</b>- ДЗ (фаза-фаза) зона 2
+                              <select name="ZPH2" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <p><b>Zone 3 Ph Status</b>- ДЗ (фаза-фаза) зона 3
+                              <select name="ZPH3" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZPH3_">
+                              <p><b>Zone 3 Offset</b>- Смещение ДЗ (фаза-фаза) зона 3
+                                    <select name="OFFSETPH3" class="common">
+                                          <option value="false">Disabled</option>
+                                          <option selected value="true">Enabled</option>
+                                    </select>
+                              </p>
+                        </div>
+                        <p><b>Zone P Ph Status</b>- ДЗ (фаза-фаза) зона P
+                              <select name="ZPHP" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZPHP_">
+                              <p><b>Zone P Ph Dir.</b>- Направление ДЗ зона P
+                                    <select name="ZPHDIRP" class="common">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                        </div>
+                        <p><b>Zone 4 Ph Status</b>- ДЗ (фаза-фаза) зона 4
+                              <select name="ZPH4" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <p><b>Zone Q Ph Status</b>- ДЗ (фаза-фаза) зона Q
+                              <select name="ZPHQ" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZPHQ_">
+                              <p><b>Zone Q Ph Dir.</b>- Направление ДЗ зона Q напр.
+                                    <select name="ZPHDIRQ" class="common" onchange="changeZone(this)">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                        </div>
+                  </div>
+            </div>
+
+
+            <p><u>ДЗ (фаза-земля)</u><b> GROUND DISTANCE</b></p>
+            <div> <b>Ground. Chars</b>- Характеристика
+                  <select name="ADVANCEDGROUND" class="common" onchange="changeChars(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="ADVANCEDGROUNDMHO">Mho</option>
+                        <option selected value="ADVANCEDGROUNDQUAD">Quad</option>
+                  </select>
+                  <div id="ADVANCEDGROUND">
+                        <div id="ADVANCEDQUAD">
+                              <p> <b>Dynamic Top Tilt</b> - Угол наглона <input class="common" name="ZGNDTILT"
+                                          type="number" min=5 max=45 step=1 value=45 title="Используйте числовой формат"
+                                          required>&deg</p>
+                        </div>
+                        <p><b>Zone 1 Gnd Status</b>- ДЗ (фаза-земля) зона 1
+                              <select name="ZGND1" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <p><b>Zone 2 Gnd Status</b>- ДЗ (фаза-земля) зона 2
+                              <select name="ZGND2" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <p><b>Zone 3 Gnd Status</b>- ДЗ (фаза-земля) зона 3
+                              <select name="ZGND3" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZGND3_">
+                              <p><b>Zone 3 Offset</b>- Смещение ДЗ (фаза-земля) зона 3
+                                    <select name="OFFSETGND3" class="common">
+                                          <option value="false">Disabled</option>
+                                          <option selected value="true">Enabled</option>
+                                    </select>
+                              </p>
+                        </div>
+                        <p><b>Zone P Gnd Status</b>- ДЗ (фаза-земля) зона P
+                              <select name="ZGNDP" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZGNDP_">
+                              <p><b>Zone P Gnd Dir.</b>- Направление ДЗ зона P
+                                    <select name="ZGNDDIRP" class="common">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                        </div>
+                        <p><b>Zone 4 Gnd Status</b>- ДЗ (фаза-земля) зона 4
+                              <select name="ZGND4" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+
+                        <p><b>Zone Q Gnd Status</b>- ДЗ (фаза-земля) зона Q
+                              <select name="ZGNDQ" class="common" onchange="changeZone(this)">
+                                    <option value="false">Disabled</option>
+                                    <option selected value="true">Enabled</option>
+                              </select>
+                        </p>
+                        <div id="ZGNDQ_">
+                              <p><b>Zone Q Gnd Dir.</b>- Направление ДЗ зона Q
+                                    <select class="common" name="ZGNDDIRQ">
+                                          <option value="FORWARD">Forward</option>
+                                          <option selected value="REVERSE">Reverse</option>
+                                    </select>
+                              </p>
+                        </div>
+
+                  </div>
+
+            </div>
+
+            <hr>
+            <p><u>ДЗ (фаза-фаза)</u><b> PHASE DISTANCE</b></p>
+            <div hidden id="ADVANCEDPHASEMHO">
+                  <p>ADVANCEDPHASEMHO</p>
+                  <p><u>Дистанционная защита (1 ступень) <b>Distance Zone 1</b></u></p>
+                  <div id="ZPH1MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHR1" type="number" min=0.05 max=500
+                                                step=0.01 value=8 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLE1" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (2 ступень) <b>Distance Zone 2</b></u></p>
+                  <div id="ZPH2MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHR2" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLE2" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (3 ступень) <b>Distance Zone 3</b></u></p>
+                  <div id="ZPH3MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHR3" type="number" min=0.05 max=500
+                                                step=0.01 value=25 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLE3" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3' Ph. Reach</b> - Смещение в 3 квадрант (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="RPHOFFSET3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (P ступень) <b>Distance Zone P</b></u></p>
+                  <div id="ZPHPMHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZP Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHRP" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLEP" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (4 ступень) <b>Distance Zone 4</b></u></p>
+                  <div id="ZPH4MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHR4" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLE4" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (Q ступень) <b>Distance Zone Q</b></u></p>
+                  <div id="ZPHQMHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Ph. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHRQ" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEMHO" name="ZPHANGLEQ" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+            </div>
+            <div id="ADVANCEDPHASEQUAD">
+                  <p><u>Дистанционная защита (1 ступень) <b>Distance Zone 1</b></u></p>
+                  <div id="ZPH1">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHR1" type="number" min=0.05 max=500
+                                                step=0.01 value=9.28 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLE1" type="number" min=20 max=90 step=1
+                                                value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R1 Ph. Resistive</b> - Активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRES1" type="number" min=0.05 max=500
+                                                step=0.01 value=12.7 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILT1" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (2 ступень) <b>Distance Zone 2</b></u></p>
+                  <div id="ZPH2">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHR2" type="number" min=0.05 max=500
+                                                step=0.01 value=18.2 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLE2" type="number" min=20 max=90 step=1
+                                                value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R2 Ph. Resistive</b> - Активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRES2" type="number" min=0.05 max=500
+                                                step=0.01 value=28.7 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILT2" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (3 ступень) <b>Distance Zone 3</b></u></p>
+                  <div id="ZPH3">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHR3" type="number" min=0.05 max=500
+                                                step=0.01 value=43 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLE3" type="number" min=20 max=90 step=1
+                                                value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3' Ph Rev Reach </b> - Полное сопротивление "назад"
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHOFFSET3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R3 Ph. Res. Fwd.</b> - Активное сопротивление "вперед"
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRESFW3" type="number" min=0.05 max=500
+                                                step=0.01 value=66.5 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R3' Ph. Res. Rev.</b> - Активное сопротивление "назад"
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRESRV3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILT3" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+
+                  </div>
+                  <p><u>Дистанционная защита (P ступень) <b>Distance Zone P</b></u></p>
+                  <div id="ZPHP">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZP Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHRP" type="number" min=0.05 max=500
+                                                step=0.01 value=16.41 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLEP" type="number" min=20 max=90 step=1
+                                                value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>RP Ph. Resistive</b> - Активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRESP" type="number" min=0.05 max=500
+                                                step=0.01 value=30.01 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Ph. Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILTP" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+
+                  </div>
+                  <p><u>Дистанционная защита (4 ступень) <b>Distance Zone 4</b></u></p>
+                  <div id="ZPH4">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHR4" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLE4" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R4 Ph. Resistive</b> - Активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRES4" type="number" min=0.05 max=500
+                                                step=0.001 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILT4" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+
+                  </div>
+                  <p><u>Дистанционная защита (Q ступень) <b>Distance Zone Q</b></u></p>
+                  <div id="ZPHQ">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Ph. Reach</b> - Полное сопротивление (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHRQ" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Ph. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHANGLEQ" type="number" min=20 max=90 step=1
+                                                value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>RQ Ph. Resistive</b> - Активное сопротивление "вперед"
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="RPHRESQ" type="number" min=0.05 max=500
+                                                step=0.01 value=25 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Titl Top Line</b> - наклон верхней прямой (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAPHASEQUAD" name="ZPHTILTQ" type="number" min=-30 max=30 step=1
+                                                value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+
+                  </div>
+            </div>
+            <hr>
+            <p><u>ДЗ (фаза-земля)</u><b> GROUND DISTANCE</b></p>
+            <div hidden id="ADVANCEDGROUNDMHO">
+                  <p>ADVANCEDGROUNDMHO</p>
+                  <p><u>Дистанционная защита (1 ступень) <b>Distance Zone 1</b></u></p>
+                  <div id="ZGND1MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDR1" type="number" min=0.05 max=500
+                                                step=0.01 value=8 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLE1" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN1 Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMP1" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN1 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLE1" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (2 ступень) <b>Distance Zone 2</b></u></p>
+                  <div id="ZGND2MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDR2" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLE2" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN2 Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMP2" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN2 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLE2" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (3 ступень) <b>Distance Zone 3</b></u></p>
+                  <div id="ZGND3MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDR3" type="number" min=0.05 max=500
+                                                step=0.01 value=25 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLE3" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3' Gnd. Reach</b> - Смещение в 3 квадрант (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="RGNDOFFSET3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN3 Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMP3" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN3 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLE3" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (P ступень) <b>Distance Zone P</b></u></p>
+                  <div id="ZGNDPMHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZP Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDRP" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLEP" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNP Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMPP" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNP Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLEP" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (4 ступень) <b>Distance Zone 4</b></u></p>
+                  <div id="ZGND4MHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDR4" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLE4" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN4 Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMP4" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN4 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLE4" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+
+                        </table>
+
+                  </div>
+                  <p><u>Дистанционная защита (Q ступень) <b>Distance Zone Q</b></u></p>
+                  <div id="ZGNDQMHO">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Gnd. Reach</b> - Z (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDRQ" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-фаза)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDANGLEQ" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNQ Res. Comp.</b> - k<sub>ZN</sub> компенсации
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZCOMPQ" type="number" min=0 max=10
+                                                step=0.01 value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNQ Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDMHO" name="ZGNDKZANGLEQ" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                        </table>
+
+
+                  </div>
+            </div>
+            <div id="ADVANCEDGROUNDQUAD">
+                  <p><u>Дистанционная защита (1 ступень) <b>Distance Zone 1</b></u></p>
+                  <div id="ZGND1">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDR1" type="number" min=0.05 max=500
+                                                step=0.01 value=9.28 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLE1" type="number" min=20 max=90
+                                                step=1 value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z1 Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILT1" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN1 Res. Comp.</b> - k<sub>Zn</sub> компенсация нулевой
+                                          последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZN1" type="number" min=0 max=10 step=0.01
+                                                value=0.57 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN1 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANG1" type="number" min=-180 max=90
+                                                step=1 value=29 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R1 Gnd. Resistive</b> - охват зоны (фаза-земля) по R
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRES1" type="number" min=0.05 max=500
+                                                step=0.01 value=28.1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (2 ступень) <b>Distance Zone 2</b></u></p>
+                  <div id="ZGND2">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDR2" type="number" min=0.05 max=500
+                                                step=0.01 value=18.2 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLE2" type="number" min=20 max=90
+                                                step=1 value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z2 Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILT2" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN2 Res. Comp.</b> - k<sub>ZN</sub> компенсация нулевой
+                                          последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZN2" type="number" min=0 max=10 step=0.01
+                                                value=0.57 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN2 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANG2" type="number" min=-180 max=90
+                                                step=1 value=29 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R2 Gnd. Resistive</b> - охват зоны (фаза-земля) по R
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRES2" type="number" min=0.05 max=500
+                                                step=0.01 value=32.69 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (3 ступень) <b>Distance Zone 3</b></u></p>
+                  <div id="ZGND3">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDR3" type="number" min=0.05 max=500
+                                                step=0.01 value=25 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLE3" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3 Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILT3" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z3' Gnd. Rev. Rch.</b> - реактивное сопротивление "назад"
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDOFFSET3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN3 Res. Comp.</b> - k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZN3" type="number" min=0 max=10 step=0.01
+                                                value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN3 Res. Angle</b> - угол k<sub>ZN</sub>
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANG3" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R3 Gnd. Res. Fwd</b> - охват зоны (фаза-земля) по R вперед
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRESFWD3" type="number" min=0.05 max=500
+                                                step=0.01 value=25 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R3' Gnd. Res. Rev</b> - охват зоны (фаза-земля) по R назад
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRESREV3" type="number" min=0.05 max=500
+                                                step=0.01 value=1 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (P ступень) <b>Distance Zone P</b></u></p>
+                  <div id="ZGNDP">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZP Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDRP" type="number" min=0.05 max=500
+                                                step=0.01 value=16.41 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLEP" type="number" min=20 max=90
+                                                step=1 value=51 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZP Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILTP" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNP Res. Comp.</b> - k<sub>Z</sub> компенсация нулевой
+                                          последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNP" type="number" min=0 max=10 step=0.01
+                                                value=0.57 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNP Res. Angle </b> - угол компенсации нулевой последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANGP" type="number" min=-180 max=90
+                                                step=1 value=29 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>RP Gnd. Resistive</b> - охват зоны (фаза-земля) по R
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRESP" type="number" min=0.05 max=500
+                                                step=0.01 value=41.99 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (4 ступень) <b>Distance Zone 4</b></u></p>
+                  <div id="ZGND4">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDR4" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLE4" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>Z4 Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILT4" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN4 Res. Comp.</b> - k<sub>Z</sub> компенсация нулевой
+                                          последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZN4" type="number" min=0 max=10 step=0.01
+                                                value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZN4 Res. Angle</b> - угол компенсации нулевой последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANG4" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>R4 Gnd. Resistive</b> - охват зоны (фаза-земля) по R
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRES4" type="number" min=0.05 max=500
+                                                step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+
+                        </table>
+                  </div>
+                  <p><u>Дистанционная защита (Q ступень) <b>Distance Zone Q</b></u></p>
+                  <div id="ZGNDQ">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Gnd. Reach</b> - Полное сопротивление (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDRQ" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Gnd. Angle</b> - &#966<sub>МЧ</sub> (фаза-земля)
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDANGLEQ" type="number" min=20 max=90
+                                                step=1 value=70 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>ZQ Gnd. Tilt Top Line</b> - наклон верхней прямой
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="ZGNDTILTQ" type="number" min=-30 max=30
+                                                step=1 value=-3 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNQ Res. Comp.</b> - k<sub>Z</sub> компенсация нулевой
+                                          последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNQ" type="number" min=0 max=10 step=0.01
+                                                value=1 title="Используйте числовой формат" required>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>kZNQ Res. Angle</b> - угол компенсации нулевой последовательности
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="KZNANGQ" type="number" min=-180 max=90
+                                                step=1 value=0 title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>RQ Gnd. Resistive</b> - охват зоны (фаза-земля) по R
+                                    </td>
+                                    <td>
+                                          <input class="ZAGROUNDQUAD" name="RGNDRESQ" type="number" min=0.05 max=500
+                                                step=0.01 value=20 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+                  </div>
+            </div>
+      </div>
+      <hr>
+      <div>
+            <p><u>Уставки таймеров ступеней ДЗ</u><b> SCHEME LOGIC</b></p>
+            <p><b>Zone1 Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMER1" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TP1">
+                  <p> <b>tZ1 Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHD1" type="number" min=0 max=10
+                              step=0.01 value=0 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TG1">
+                  <p> <b>tZ1 Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDD1" type="number" min=0
+                              max=10 step=0.01 value=0 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+            <p><b>Zone2 Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMER2" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TP2">
+                  <p> <b>tZ2 Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHD2" type="number" min=0 max=10
+                              step=0.01 value=0.2 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TG2">
+                  <p> <b>tZ2 Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDD2" type="number" min=0
+                              max=10 step=0.01 value=0.2 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+            <p><b>Zone3 Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMER3" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TP3">
+                  <p> <b>tZ3 Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHD3" type="number" min=0 max=10
+                              step=0.01 value=0.6 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TG3">
+                  <p> <b>tZ3 Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDD3" type="number" min=0
+                              max=10 step=0.01 value=0.6 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+            <p><b>ZoneP Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMERP" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TPP">
+                  <p> <b>tZP Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHDP" type="number" min=0 max=10
+                              step=0.01 value=0.4 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TGP">
+                  <p> <b>tZP Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDDP" type="number" min=0
+                              max=10 step=0.01 value=0.4 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+
+            <p><b>Zone4 Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMER4" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TP4">
+                  <p> <b>tZ4 Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHD4" type="number" min=0 max=10
+                              step=0.01 value=1 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TG4">
+                  <p> <b>tZ4 Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDD4" type="number" min=0
+                              max=10 step=0.01 value=1 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+            <p><b>ZoneQ Tripping</b>- Выбор вида КЗ
+                  <select class="TIMERS" name="TIMERQ" onchange="changeTime(this)">
+                        <option value="DISABLED">Disabled</option>
+                        <option value="PHASE">Phase Only</option>
+                        <option value="GROUND">Ground Only</option>
+                        <option selected value="PHASEGROUND">Phase and Ground</option>
+                  </select>
+            </p>
+            <div id="TPQ">
+                  <p> <b>tZQ Ph. Delay</b> - t (фаза-фаза) <input class="TIMERS" name="TPHDQ" type="number" min=0 max=10
+                              step=0.01 value=1 title="Используйте числовой формат" required>сек</p>
+            </div>
+            <div id="TGQ">
+                  <p> <b>tZQ Gnd. Delay</b> - t (фаза-земля) <input class="TIMERS" name="TGNDDQ" type="number" min=0
+                              max=10 step=0.01 value=1 title="Используйте числовой формат" required>сек</p>
+            </div>
+
+
+      </div>
+
+      <!-- <input type="submit" value="Формирование параметров RIO файла"> -->
+      <button onclick="formValidation()">Формирование параметров RIO файла</button>
+
+      <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+      <!-- </form> -->
+
+      <p>
+            <a target="_blank" href="images/p54x_Load.png"><img src="images/p54x_Load.png" alt="Вырез нагрузки"
+                        title="Вырез нагрузки">Вырез нагрузки </a>
+            <a target="_blank" href="images/p54x_MhoPhPh.png"><img src="images/p54x_MhoPhPh.png"
+                        alt="Круговые характеристики ДЗ (фаза-фаза)"
+                        title="Круговые характеристики ДЗ (фаза-фаза)">Круговые характеристики ДЗ (фаза-фаза) </a>
+            <a target="_blank" href="images/p54x_Quad.png"><img src="images/p54x_Quad.png"
+                        alt="Полигональные характеристики ДЗ" title="Полигональные характеристики ДЗ">Полигональные
+                  характеристики ДЗ </a>
+            <a target="_blank" href="images/p44x_QuadSimplePhase.png"><img src="images/p44x_QuadSimplePhase.png"
+                        alt="Построение полигональной характеристики ДЗ"
+                        title="Построение полигональной характеристики ДЗ">Построение полигональной
+                  характеристики ДЗ </a>
+            <a target="_blank" href="images/px4x_QuadCover.png"><img src="images/px4x_QuadCover.png"
+                        alt="Охват характеристики ДЗ (фаза-фаза)" title="Охват характеристики ДЗ (фаза-фаза)">Охват
+                  характеристики ДЗ (фаза-фаза) </a>
+
+
+            <a target="_blank" href="images/px4x_QuadSimpleGround.png"><img src="images/px4x_QuadSimpleGround.png"
+                        alt="Полигональная характеристика ДЗ" title="Полигональная характеристика ДЗ">Полигональная
+                  характеристика ДЗ </a>
+
+            <a target="_blank" href="images/px4x_Kz0.png"><img src="images/px4x_Kz0.png"
+                        alt="Учет коэффициента компенсации при замыканиях на землю"
+                        title="Учет коэффициента компенсации при замыканиях на землю">Учет коэффициента компенсации при
+                  замыканиях на землю </a>
+            <a target="_blank" href="images/px4x_QuadBottom.png"><img src="images/px4x_QuadBottom.png"
+                        alt="Построение верхней линии полигональной характеристики"
+                        title="Построение верхней линии полигональной характеристики">Построение верхней линии
+                  полигональной характеристики </a>
+            <a target="_blank" href="images/px4x_QuadRight.png"><img src="images/px4x_QuadRight.png"
+                        alt="Построение правой линии полигональной характеристики"
+                        title="Построение правой линии полигональной характеристики">Построение правой линии
+                  полигональной характеристики </a>
+            <a target="_blank" href="images/px4x_QuadBottom.png"><img src="images/px4x_QuadBottom.png"
+                        alt="Построение нижней линии полигональной характеристики"
+                        title="Построение нижней линии полигональной характеристики">Построение нижней линии
+                  полигональной характеристики </a>
+            <a target="_blank" href="images/px4x_QuadLeft.png"><img src="images/px4x_QuadLeft.png"
+                        alt="Построение левой линии полигональной характеристики"
+                        title="Построение левой линии полигональной характеристики">Построение левой линии полигональной
+                  характеристики </a>
+      </p>
+
+</body>
+
+</html>

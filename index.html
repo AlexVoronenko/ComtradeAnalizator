@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ComtradeAnalyzer</title>
+   <link rel="stylesheet" href="CSS/main.css">
+   <!-- <script src="JS/main.js"></script> -->
+</head>
+
+<body>
+   <header>
+      <h1>Анализатор файлов COMTRADE</h1>
+   </header>
+   <div id="out">
+      <p>Выбери файлы для чтения или кнопку для обработки файлов COMTRADE</p>
+      <p id="outP">По умолчанию у вас есть возможность выбрать фалы с расширением *.cfg, *.dat, *.inf, *.hdr, *.cff,
+         *.rio
+         (Пользовательские файлы)</p>
+   </div>
+   <div id="button">
+      <input id="files" type="file" onchange="readFiles(this)" multiple accept=".cfg,.dat,.rio,.inf,.hdr,.cff"
+         class="custom-file-input">
+      <!-- <progress max="100" value="0">Загружено на </progress> -->
+      <input type="button" value="CFG" onclick='window.open("cfgFile.html");'>
+      <input type="button" value="DAT" onclick='window.open("datFile.html");'>
+      <input type="button" value="CFG+DAT" onclick='window.open("comtrade.html");'>
+      <input type="button" value="RIO" onclick='window.open("rioFile.html");'>
+      <input type="button" value="INF" onclick='window.open("infFile.html");'>
+      <input type="button" value="HDR" onclick='window.open("hdrFile.html");'>
+   </div>
+
+   <div id="progress_bar">
+      <div class="percent" id="progress">0%</div>
+   </div>
+
+   <table id="table">
+      <!-- <caption>Таблица файлов</caption> -->
+      <thead>
+         <tr>
+            <th>№</th>
+            <th>Имя файла</th>
+            <th>CFG файл</th>
+            <th>DAT файл</th>
+            <th>CFG+DAT файл</th>
+            <th>RIO файл</th>
+            <th>INF файл</th>
+            <th>HDR файл</th>
+            <th>Дата создания файла</th>
+            <th>Размер файла, Мб</th>
+            <th>О событии...</th>
+         </tr>
+      </thead>
+      <!-- <tbody>
+         <tr>
+            <th>1</th>
+            <td> 200910900 </td>
+            <td class="box">1997</td>
+            <td class="box">ASCII</td>
+            <td class="box">24.12.1997 14:56</td>
+            <td class="box">Z:8 I:12</td>
+            <td></td>
+            <td class="box">0.12</td>
+            <td>24.12.1997 16:33</td>
+            <td>CFG:0.11 DAT:1.12 RIO:0.34</td>
+            <td></td>
+         </tr>
+         <tr>
+            <th>2</th>
+            <td>7SA522-2</td>
+            <td class="box">2014</td>
+            <td class="box">BINARY</td>
+            <td class="box">02.04.2012 11:02</td>
+            <td class="box">Z:8</td>
+            <td></td>
+            <td></td>
+            <td>24.12.1997 16:34</td>
+            <td>CFG:0.20 DAT:1.32 RIO:0.55</td>
+            <td></td>
+         </tr>
+         <tr>
+            <th>3</th>
+            <td>FR00001</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="box">Z:12</td>
+            <td></td>
+            <td></td>
+            <td>24.12.1997 16:34</td>
+            <td>RIO:1.55</td>
+            <td></td>
+         </tr> -->
+      <!-- </tbody>
+      <tfoot>
+         <th>№ п/п</th>
+      </tfoot> -->
+   </table>
+
+   <script src="JS/main.js"></script>
+</body>
+
+</html>

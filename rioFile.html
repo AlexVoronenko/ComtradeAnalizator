@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Просмотр RIO файла</title>
+   <link rel="stylesheet" href="CSS/main.css">
+</head>
+
+<body>
+
+   <header>
+      <h1>Анализ файлов COMTRADE - *.RIO</h1>
+   </header>
+
+   <div id="out">
+      <p>В разработке...</p>
+   </div>
+
+   <div>
+      <input id="files" type="file" onchange="readFiles(this)" accept=".rio" class="custom-file-input">
+      <input type="button" value="Уставки терминала для построения файла RIO" onclick="showDiv('inputSettings')">
+
+   </div>
+   <br>
+
+
+   <div id="inputSettings" style="display:none; border: 1px; height: 500px;">
+      Тип терминала
+      <select name="customerSelect" id="customerSelect" onchange="ChangeRza()">
+         <option value="" selected disabled hidden></option>
+         <option value="rel650_ZQDPDIS.html">REL650_ZQDPDIS (ABB)</option>
+         <option value="rel670_ZMFPDIS.html">REL670_ZMFPDIS (ABB)</option>
+         <option value="rel670_ZMQPDIS.html">REL670_ZMQPDIS (ABB)</option>
+         <!-- <option value="p443.html">MICOM P443 (MICOM)</option> -->
+         <option value="micomP54x.html">MICOM P54x (Schider Electric)</option>
+         <option value="d60.html">UR D60 (GE)</option>
+         <option value="mp771.html">MP771 (БЭМН)</option>
+         <option value="sel421.html">SEL-421 (SEL)</option>
+         <!-- <option value="7sa522.html">7SA522 (Siemens)</option> -->
+         <option value="pcs902_Q21.html">PCS-902_21Q (NR)</option>
+         <option value="rel511.html">REL-511 (ABB)</option>
+         <option value="ekra2704_016.html">2704_016 305 ("ЭКРА")</option>
+      </select>
+
+      <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+      <!-- <button onclick='parent.document.getElementById("iframeRIO").contentWindow.formValidation()'>!!!Формирование
+         параметров RIO файла</button> -->
+
+      <button onclick='callButtonInsideFrame("validate")'>Формирование
+         параметров RIO файла</button>
+
+      <button onclick='callButtonInsideFrame("saveRio")'>Сохранить RIO файл</button>
+      <button onclick='callButtonInsideFrame("saveSettings")'>Сохранить параметры</button>
+      <button onclick='callButtonInsideFrame("loadSettings")'>Загрузить параметры</button>
+
+      <iframe src="./HtmlTemplate/default.html" allow-scripts frameborder="0" height="100%" width="100%"
+         id="iframeRIO"></iframe>
+
+
+   </div>
+
+   <!-- <script src="JS/comtradeLib.js"></script> -->
+   <script src="JS/Geometry.js"></script>
+   <script src="JS/rioLib.js"></script>
+   <script src="JS/rioFile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>MP-771</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="mp771.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()">
+            <h2><b>Уставки терминала MP-771 БЕЛЭЛЕКТРОМОНТАЖНАЛАДКА</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub></b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr>
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+            <p><u>Учет нагрузки</u><b> Ф-Ф</b></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>y1</b>- угол нагрузки
+                              </td>
+                              <td>
+                                    <input name="Y1_LOAD" class="common" type="number" min=0 max=89 step=1 value=25
+                                          title="Используйте числовой формат" required>&deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R1</b> - сопротивление нагрузки "прямо"
+                              </td>
+                              <td>
+                                    <input name="R1_LOAD" class="common" type="number" min=0 max=256 step=0.01 value=20
+                                          title="Используйте числовой формат" required>Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R2</b> - сопротивление нагрузки "назад"
+                              </td>
+                              <td>
+                                    <input name="R2_LOAD" class="common" type="number" min=0 max=256 step=0.01 value=20
+                                          title="Используйте числовой формат" required>Ом/фаза
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (общие настройки)</u><b> ДЗ</b></p>
+            <div>
+                  <p>Углы направленной характеристики для ступеней Z<b></b></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>y1</b> - угол наклона характеристики во втором крадранте
+                              </td>
+                              <td>
+                                    <input class="common" name="Y1_Z" type="number" min=0 max=45 step=1 value=10
+                                          title="Используйте числовой формат" required>&deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>y2</b> - угол наклона характеристики в 4 крадранте
+                              </td>
+                              <td>
+                                    <input class="common" name="Y2_Z" type="number" min=0 max=45 step=1 value=15
+                                          title="Используйте числовой формат" required>&deg
+                              </td>
+                        </tr>
+                  </table>
+
+                  <p><u>Компенсация нулевой последовательности</u><b></b></p>
+                  <p><b>Зона Ф-N1</b></p>
+                  <p> <b>Z<sub>0</sub>=</b>
+                        R0<input class="common" name="R0_1" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX0<input class="common" name="X0_1" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p> <b>Z<sub>1</sub>=</b>
+                        R1<input class="common" name="R1_1" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX1<input class="common" name="X1_1" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p><b>Зона Ф-N2</b></p>
+                  <p> <b>Z<sub>0</sub>=</b>
+                        R0<input class="common" name="R0_2" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX0<input class="common" name="X0_2" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p> <b>Z<sub>1</sub>=</b>
+                        R1<input class="common" name="R1_2" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX1<input class="common" name="X1_2" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p><b>Зона Ф-N3</b></p>
+                  <p> <b>Z<sub>0</sub>=</b>
+                        R0<input class="common" name="R0_3" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX0<input class="common" name="X0_3" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p> <b>Z<sub>1</sub>=</b>
+                        R1<input class="common" name="R1_3" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX1<input class="common" name="X1_3" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p><b>Зона Ф-N4</b></p>
+                  <p> <b>Z<sub>0</sub>=</b>
+                        R0<input class="common" name="R0_4" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX0<input class="common" name="X0_4" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p> <b>Z<sub>1</sub>=</b>
+                        R1<input class="common" name="R1_4" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX1<input class="common" name="X1_4" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p><b>Зона Ф-N5</b></p>
+                  <p> <b>Z<sub>0</sub>=</b>
+                        R0<input class="common" name="R0_5" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX0<input class="common" name="X0_5" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+                  <p> <b>Z<sub>1</sub>=</b>
+                        R1<input class="common" name="R1_5" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>
+                        + jX1<input class="common" name="X1_5" type="number" min=0 max=256 step=0.01 value=1
+                              title="Используйте числовой формат" required>Ом</p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (1 ступень) <b>Z1</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE1" name="MODE" class="ZONE1" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE1">
+                  <table>
+                        <tr>
+                              <td>
+                                    <b></b>Тип
+                              </td>
+                              <td>
+                                    <select class="ZONE1" name="TYPEZ" onchange="changeMode(this)">
+                                          <option selected value="QUAD1">Полигональная</option>
+                                          <option value="MHO1">Круговая</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b></b>Контур
+                              </td>
+                              <td>
+                                    <select class="ZONE1" name="LOOP">
+                                          <option selected value="PHASE">Ф-Ф</option>
+                                          <option value="GROUND1">Ф-N1</option>
+                                          <option value="GROUND2">Ф-N2</option>
+                                          <option value="GROUND3">Ф-N3</option>
+                                          <option value="GROUND4">Ф-N4</option>
+                                          <option value="GROUND5">Ф-N5</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b></b>Направление
+                              </td>
+                              <td>
+                                    <select class="ZONE1" name="DIRECTIONAL">
+                                          <option selected value="NONDIRECTIONAL">НЕТ</option>
+                                          <option value="FORWARD">Прямое</option>
+                                          <option value="REVERSE">Обратное</option>
+                                    </select>
+                              </td>
+                        </tr>
+
+
+                  </table>
+                  <div id="QUAD1">
+                        <table>
+
+
+                              <tr>
+                                    <td>
+                                          <b>R<sub></sub></b> - активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="RQUAD" type="number" min=0 max=256 step=0.01
+                                                value=10 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>X<sub></sub></b> - реактивное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="XQUAD" type="number" min=0 max=256 step=0.01
+                                                value=10 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>f<sub></sub></b> - угол характеристики
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="FQUAD" type="number" min=0 max=89 step=1 value=75
+                                                title="Используйте числовой формат" required>&deg
+                                    </td>
+                              </tr>
+
+                        </table>
+
+                  </div>
+                  <div hidden id="MHO1">
+                        <table>
+                              <tr>
+                                    <td>
+                                          <b>R<sub></sub></b> - активное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="RMHO" type="number" min=-256 max=256 step=0.01
+                                                value=10 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>X<sub></sub></b> - реактивное сопротивление
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="XMHO" type="number" min=-256 max=256 step=0.01
+                                                value=10 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          <b>r<sub></sub></b> - радиус характеристики
+                                    </td>
+                                    <td>
+                                          <input class="ZONE1" name="RADMHO" type="number" min=0 max=256 step=0.01
+                                                value=14.14 title="Используйте числовой формат" required>Ом
+                                    </td>
+                              </tr>
+                        </table>
+
+                  </div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>t<sub>ср</sub></b> - время работы
+                              </td>
+                              <td>
+                                    <input class="ZONE1" name="TIME" type="number" min=0 max=3276700 step=1 value=0
+                                          title="Используйте числовой формат" required>мс
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (2 ступень) <b>Z2</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE2" name="MODE" class="ZONE2" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE2">
+                  <b></b>Тип
+                  <select class="ZONE2" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD2">Полигональная</option>
+                        <option value="MHO2">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE2" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE2" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD2">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE2" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=11 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE2" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=11 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE2" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO2">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE2" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=11 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE2" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE2" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE2" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (3 ступень) <b>Z3</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE3" name="MODE" class="ZONE3" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE3">
+                  <b></b>Тип
+                  <select class="ZONE3" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD3">Полигональная</option>
+                        <option value="MHO3">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE3" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE3" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD3">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE3" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=12 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE3" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=12 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE3" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO3">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE3" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=12 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE3" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE3" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE3" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (4 ступень) <b>Z4</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE4" name="MODE" class="ZONE4" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE4">
+                  <b></b>Тип
+                  <select class="ZONE4" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD4">Полигональная</option>
+                        <option value="MHO4">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE4" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE4" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD4">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE4" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=13 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE4" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=13 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE4" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO3">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE4" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=13 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE4" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE4" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE4" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (5 ступень) <b>Z5</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE5" name="MODE" class="ZONE5" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE5">
+                  <b></b>Тип
+                  <select class="ZONE5" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD5">Полигональная</option>
+                        <option value="MHO5">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE5" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE5" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD5">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE5" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=14 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE5" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=14 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE5" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO5">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE5" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=14 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE5" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE5" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE5" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (6 ступень) <b>Z6</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE3" name="MODE" class="ZONE6" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE6">
+                  <b></b>Тип
+                  <select class="ZONE6" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD6">Полигональная</option>
+                        <option value="MHO6">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE6" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE6" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD6">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE6" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=15 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE6" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=15 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE6" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO6">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE6" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=15 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE6" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE6" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE6" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (7 ступень) <b>Z7</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE7" name="MODE" class="ZONE7" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE7">
+                  <b></b>Тип
+                  <select class="ZONE7" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD7">Полигональная</option>
+                        <option value="MHO7">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE7" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE7" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD7">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE7" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=16 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE7" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=16 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE7" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO7">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE7" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=16 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE7" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE7" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE7" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (8 ступень) <b>Z8</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE8" name="MODE" class="ZONE8" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE8">
+                  <b></b>Тип
+                  <select class="ZONE8" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD8">Полигональная</option>
+                        <option value="MHO8">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE8" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE8" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD8">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE8" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=17 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE8" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=17 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE8" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO8">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE8" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=17 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE8" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE8" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE8" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (9 ступень) <b>Z9</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODE9" name="MODE" class="ZONE9" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONE9">
+                  <b></b>Тип
+                  <select class="ZONE9" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUAD9">Полигональная</option>
+                        <option value="MHO9">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONE9" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONE9" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUAD9">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE9" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=18 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE9" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=18 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONE9" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHO9">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONE9" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=18 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONE9" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONE9" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONE9" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (10 ступень) <b>Z10</b></u></p>
+            <p><b></b>Режим
+                  <select id="ZONEMODEX" name="MODE" class="ZONEX" onchange="changeZone(this)">
+                        <option value="false">Выведено</option>
+                        <option selected value="true">Введено</option>
+                        <option value="alarm">Сигнализация</option>
+                        <option value="trip">Отключение</option>
+
+                  </select>
+            </p>
+            <div id="ZONEX">
+                  <b></b>Тип
+                  <select class="ZONEX" name="TYPEZ" onchange="changeMode(this)">
+                        <option selected value="QUADX">Полигональная</option>
+                        <option value="MHOX">Круговая</option>
+                  </select>
+                  <p> <b></b>Контур
+                        <select class="ZONEX" name="LOOP">
+                              <option selected value="PHASE">Ф-Ф</option>
+                              <option value="GROUND1">Ф-N1</option>
+                              <option value="GROUND2">Ф-N2</option>
+                              <option value="GROUND3">Ф-N3</option>
+                              <option value="GROUND4">Ф-N4</option>
+                              <option value="GROUND5">Ф-N5</option>
+                        </select>
+                  </p>
+                  <p> <b></b>Направление
+                        <select class="ZONEX" name="DIRECTIONAL">
+                              <option selected value="NONDIRECTIONAL">НЕТ</option>
+                              <option value="FORWARD">Прямое</option>
+                              <option value="REVERSE">Обратное</option>
+                        </select>
+                  </p>
+                  <div id="QUADX">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONEX" name="RQUAD" type="number"
+                                    min=0 max=256 step=0.01 value=19 title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONEX" name="XQUAD"
+                                    type="number" min=0 max=256 step=0.01 value=19 title="Используйте числовой формат"
+                                    required>Ом</p>
+                        <p> <b>f<sub></sub></b> - угол характеристики <input class="ZONEX" name="FQUAD" type="number"
+                                    min=0 max=89 step=1 value=75 title="Используйте числовой формат" required>&deg
+                        </p>
+                  </div>
+                  <div hidden id="MHOX">
+                        <p> <b>R<sub></sub></b> - активное сопротивление <input class="ZONEX" name="RMHO" type="number"
+                                    min=-256 max=256 step=0.01 value=19 title="Используйте числовой формат" required>Ом
+                        </p>
+                        <p> <b>X<sub></sub></b> - реактивное сопротивление <input class="ZONEX" name="XMHO"
+                                    type="number" min=-256 max=256 step=0.01 value=11
+                                    title="Используйте числовой формат" required>Ом</p>
+                        <p> <b>r<sub></sub></b> - радиус характеристики <input class="ZONEX" name="RADMHO" type="number"
+                                    min=0 max=256 step=0.01 value=15.56 title="Используйте числовой формат" required>Ом
+                        </p>
+                  </div>
+                  <p> <b>t<sub>ср</sub></b> - время работы<input class="ZONEX" name="TIME" type="number" min=0
+                              max=3276700 step=1 value=200 title="Используйте числовой формат" required>мс
+                  </p>
+
+            </div>
+            <!-- <p> <input class="Z1" type="checkbox" name="ZG_EN1" value="on" checked><b>21Q1.ZG.En</b>- ввод
+                  контура
+                  (фаза-земля)
+            </p>
+            <p> <input class="Z1" type="checkbox" name="ZP_EN1" value="on" checked><b>21Q1.ZP.En</b>- ввод
+                  контура
+                  (фаза-фаза)</p>
+
+            </div> -->
+
+
+
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+      </form>
+      <p>
+            <a target="_blank" href="images/mp771_Load.png"><img src="images/mp771_Load.png" alt="Вырез нагрузки"
+                        title="Вырез нагрузки">Вырез нагрузки </a>
+            <a target="_blank" href="images/mp771_Dir.png"><img src="images/mp771_Dir.png"
+                        alt="Направление характеристики ДЗ" title="Направление характеристики ДЗ">Направление
+                  характеристики ДЗ </a>
+            <a target="_blank" href="images/mp771_Mho.png"><img src="images/mp771_Mho.png"
+                        alt="Построение круговой характеристики ДЗ"
+                        title="Построение круговой характеристики ДЗ">Построение круговой характеристики ДЗ </a>
+            <a target="_blank" href="images/mp771_Quad.png"><img src="images/mp771_Quad.png"
+                        alt="Построение полигональной характеристики ДЗ"
+                        title="Построение полигональной характеристики ДЗ">Построение полигональной характеристики ДЗ
+            </a>
+            <a target="_blank" href="images/mp771_Kz0.png"><img src="images/mp771_Kz0.png"
+                        alt="Учет коэффициента компенсации нулевой последовательности"
+                        title="Учет коэффициента компенсации нулевой последовательности">Учет коэффициента компенсации
+                  нулевой последовательности
+            </a>
+
+      </p>
+
+
+
+</body>
+
+</html>

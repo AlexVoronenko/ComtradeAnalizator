@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Просмотр DAT файла</title>
+   <link rel="stylesheet" href="CSS/main.css">
+   <link rel="stylesheet" href="CSS/cfgfile.css">
+</head>
+
+<body>
+   <header>
+      <h1>Анализ файлов COMTRADE - *.DAT</h1>
+   </header>
+   <div id="out">
+      <p>В разработке...</p>
+   </div>
+
+   <div>
+      <input id="files" type="file" onchange="readFiles(this)" accept=".dat" class="custom-file-input">
+      <input type="button" value="Прочитать как ASCII" onclick="convertASCII()">
+      <input type="button" value="Прочитать как BINARY" onclick="convertBinary('binary')">
+      <input type="button" value="Прочитать как BINARY32" onclick="convertBinary('binary32')">
+      <input type="button" value="Прочитать как FLOAT32" onclick="convertBinary('float32')">
+
+      <!-- <progress max="100" value="0">Загружено на </progress> -->
+      <!-- <input type="button" value="Проверка структуры CFG файла" onclick="validateCfg()"> -->
+      <!-- <input type="button" value="Создание CFG файла из DAT файла" onclick="createCfg()"> -->
+      <!-- <input type="button" value="Изменение кодировки DOS->UTF-8" onclick="dos_UTF()"> -->
+      <!-- <input type="button" value="Сохранить в COMTRADE2013" onclick="saveComtrade2013()"> -->
+      <!-- <input type="button" value="DAT" onclick='window.open("datFile.html");'> -->
+      <!-- <input type="button" value="CFG+DAT" onclick='window.open("comtrade.html");'> -->
+      <!-- <input type="button" value="RIO" onclick='window.open("rioFile.html");'> -->
+      <!-- <input type="button" value="INF" onclick='window.open("infFile.html");'> -->
+      <!-- <input type="button" value="HDR" onclick='window.open("hdrFile.html");'> -->
+   </div>
+   <br>
+
+
+   <table id="table">
+      <!-- <caption>Таблица содержимого первой выборки DAT файла</caption> -->
+      <thead>
+         <tr>
+            <th>Значение</th>
+            <th>Описание</th>
+            <th>Переменная IEC</th>
+            <th>Тип переменной</th>
+            <th>О выборке</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <th>1</th>
+            <td>Номер выборки</td>
+            <td>n</td>
+            <td>nCrit, int, num, maxL=1, minL=10, [1...9999999999]</td>
+            <td></td>
+         </tr>
+
+         <!-- <tr>
+            <th>2</th>
+            <td>34,8A,26D</td>
+            <td> 34<br>
+               8<br>
+               26</td>
+            <td>Общее число каналов<br>
+               Число аналоговых каналов<br>
+               Число дискретных каналов</td>
+            <td>TT<br>
+               #AA+<br>
+               #DD+</td>
+            <td>crit<br>
+               crit<br>
+               crit</td>
+         </tr> -->
+
+         <!-- </tbody>
+      <tfoot>
+         <th>№ п/п</th>
+      </tfoot> -->
+   </table>
+   <br>
+   <table id="tableDat">
+      <!-- <caption>Таблица содержимого CFG файла</caption> -->
+      <thead>
+         <tr>
+            <th>№</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+         </tr>
+      </thead>
+      <tbody>
+         <!-- <tr>
+            <th>1</th>
+            <td>230 Sofe97 633 =F106_7SA522 V4.7 Var,000356,1997</td>
+            <td>230 Sofe97 633 =F106_7SA522 V4.7 Var <br>
+               000356<br>
+               1997</td>
+            <td>Имя/ место установки<br>
+               Номер регистратора<br>
+               Версия Comtrade файла</td>
+            <td>Station_name<br>
+               rec_dev_id<br>
+               rev_year</td>
+            <td>nCrit, alNum, maxL=0, minL=64<br>
+               crit<br>
+               crit</td>
+         </tr>
+
+         <tr>
+            <th>2</th>
+            <td>34,8A,26D</td>
+            <td> 34<br>
+               8<br>
+               26</td>
+            <td>Общее число каналов<br>
+               Число аналоговых каналов<br>
+               Число дискретных каналов</td>
+            <td>TT<br>
+               #AA+<br>
+               #DD+</td>
+            <td>crit<br>
+               crit<br>
+               crit</td>
+         </tr> -->
+
+         <!-- </tbody>
+      <tfoot>
+         <th>№ п/п</th>
+      </tfoot> -->
+   </table>
+
+
+   <script src="JS/comtradeLib.js"></script>
+   <script src="JS/datFile.js"></script>
+</body>
+
+</html>

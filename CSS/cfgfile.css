@@ -1,0 +1,11 @@
+.redtext {
+   color: red; 
+ }
+
+ .bluetext {
+   color: rgb(38, 0, 255); 
+ }
+
+ table, td, th {
+   cursor: default;
+ }

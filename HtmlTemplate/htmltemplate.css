@@ -1,0 +1,95 @@
+select{
+   /* font-size: 70%;  */
+  /* color: rgb(0, 0, 0); */
+  text-decoration: none;
+  /* padding: .5em 1em; */
+  /* outline: none; */
+  border-radius: 1px;
+  background: linear-gradient(rgb(179, 179, 179), rgb(245, 245, 255)) rgb(255, 255, 255);
+  width: 110px;
+
+  box-shadow:
+  0 1px rgba(255,255,255,.2) inset,
+  0 3px 5px rgba(0,1,6,.5),
+  0 0 1px 1px rgba(0,1,6,.2);
+ transition: .2s ease-in-out;
+
+}
+
+
+
+input{
+    /* font-size: 70%;  */
+   color: rgb(0, 0, 0);
+   text-decoration: none;
+   /* padding: .5em 1em; */
+   /* outline: none; */
+   border-radius: 1px;
+   background: linear-gradient(rgb(179, 179, 179), rgb(245, 245, 255)) rgb(0, 0, 0);
+   width: 60px;
+
+   box-shadow:
+   0 1px rgba(255,255,255,.2) inset,
+   0 3px 5px rgba(0,1,6,.5),
+   0 0 1px 1px rgba(0,1,6,.2);
+  transition: .2s ease-in-out;
+
+}
+
+
+input[type=submit] {
+   padding:5px 15px; 
+   background:#ccc; 
+   border:0 none;
+   cursor:pointer;
+   -webkit-border-radius: 5px;
+   border-radius: 5px; 
+   width: 280px;
+
+   display:block;
+   position: relative;
+   border: 1px solid white;
+   margin:0 auto; 
+
+}
+button{
+   padding:5px 15px; 
+   background:#ccc; 
+   border:0 none;
+   cursor:pointer;
+   -webkit-border-radius: 5px;
+   border-radius: 5px; 
+   width: 280px;  
+
+   display:block;
+   position: relative;
+   border: 1px solid white;
+   margin:0 auto; 
+
+
+}
+
+
+
+input:invalid:required{
+   background-image: linear-gradient(to rigtht, pink,lightgreen);
+   box-shadow:none;
+}
+input:invalid{
+   border: 2px solid red;
+}
+input:valid{
+   border:2px solid black;
+}
+p {
+   margin: 0px;
+}
+
+textarea {
+height: 200px;
+overflow:auto; /* или auto  hidden*/
+width: 100%;
+}
+img{
+   width: 100%;
+}

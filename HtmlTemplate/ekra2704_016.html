@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ЭКРА 2704v016</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="ekra2704_016.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()">
+            <h2><b>Уставки терминала "ЭКРА БЭ2704 v.016_305"</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub> ()</b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+
+            <p><u><b>Уставки РС (реле сопротивления)</b></u></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>X 1ст. ДЗ (фаза-земля)</b> - Уставка 1ст. ДЗ по оси Х характеристики ДЗ при КЗ на
+                                    землю
+                              </td>
+                              <td>
+                                    <input name="X1G" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.11
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 1ст. ДЗ (фаза-земля)</b> - Уставка 1ст. ДЗ по оси R характеристики ДЗ при КЗ на
+                                    землю
+                              </td>
+                              <td>
+                                    <input name="R1G" class="DZ" type="number" min=0.2 max=100 step=0.01 value=3.27
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ1 (фаза-земля)</sub></b> - Наклон характеристики 1ст. ДЗ при КЗ на
+                                    землю
+                              </td>
+                              <td>
+                                    <input name="PHI11G" class="DZ" type="number" min=45 max=89 step=0.01 value=52
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>KKR</b> - Корректирующий множитель KKR коэф. компенсации тока 3I<sub>0</sub> по
+                                    R
+                              </td>
+                              <td>
+                                    <input name="KKR" class="DZ" type="number" min=0.00 max=3.00 step=0.01 value=0.16
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>KKX</b> - Корректирующий множитель KKR коэф. компенсации тока 3I<sub>0</sub> по
+                                    R
+                              </td>
+                              <td>
+                                    <input name="KKX" class="DZ" type="number" min=0.00 max=3.00 step=0.01 value=0.72
+                                          title="Используйте числовой формат" required>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>X 1ст. ДЗ (фаза-фаза)</b> - Уставка 1ст. ДЗ по оси Х характеристики ДЗ при КЗ на
+                                    землю
+                              </td>
+                              <td>
+                                    <input name="X1P" class="DZ" type="number" min=0.2 max=100 step=0.01 value=1.38
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 1ст. ДЗ (фаза-фаза)</b> - Уставка 1ст. ДЗ по оси R характеристики ДЗ при КЗ на
+                                    землю
+                              </td>
+                              <td>
+                                    <input name="R1P" class="DZ" type="number" min=0.2 max=100 step=0.01 value=1.09
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ1 (фаза-фаза)</sub></b> - Наклон характеристики 1ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI11P" class="DZ" type="number" min=45 max=89 step=0.01 value=52
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Tilt1<sub>1 (фаза-фаза)</sub></b> - Наклон верхней части характеристики 1ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="TILT1P" class="DZ" type="number" min=-45 max=0 step=0.01 value=-10
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>X 2ст. ДЗ</b> - Уставка 2ст. ДЗ по оси Х характеристики
+                              </td>
+                              <td>
+                                    <input name="X2" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.11
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 2ст. ДЗ</b> - Уставка 2ст. ДЗ по оси R характеристики
+                              </td>
+                              <td>
+                                    <input name="R2" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.18
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ2</sub></b> - Наклон характеристики 2ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI12" class="DZ" type="number" min=45 max=89 step=0.01 value=52
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>X 3ст. ДЗ</b> - Уставка 3ст. ДЗ по оси Х характеристики
+                              </td>
+                              <td>
+                                    <input name="X3" class="DZ" type="number" min=0.2 max=100 step=0.01 value=4.66
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 3ст. ДЗ</b> - Уставка 3ст. ДЗ по оси R характеристики
+                              </td>
+                              <td>
+                                    <input name="R3" class="DZ" type="number" min=0.2 max=100 step=0.01 value=5.45
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ3</sub></b> - Наклон характеристики 3ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI13" class="DZ" type="number" min=45 max=89 step=0.01 value=52
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>X 4ст. ДЗ</b> - Уставка 4ст. ДЗ по оси Х характеристики
+                              </td>
+                              <td>
+                                    <input name="X4" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.42
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 4ст. ДЗ</b> - Уставка 4ст. ДЗ по оси R характеристики
+                              </td>
+                              <td>
+                                    <input name="R4" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.18
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ4</sub></b> - Наклон характеристики 4ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI14" class="DZ" type="number" min=45 max=89 step=0.01 value=52
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>DirMode4</b>- Направление 4ст. ДЗ
+                              </td>
+                              <td>
+                                    <select class="DZ" name="DIR4">
+                                          <option selected value="FORWARD">Вперед</option>
+                                          <option value="REVERSE">Назад</option>
+                                    </select>
+                              </td>
+                        </tr>
+
+
+
+                        <tr>
+                              <td>
+                                    <b>X 5ст. ДЗ</b> - Уставка 5ст. ДЗ по оси Х характеристики
+                              </td>
+                              <td>
+                                    <input name="X5" class="DZ" type="number" min=0.2 max=100 step=0.01 value=2.88
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>R 5ст. ДЗ</b> - Уставка 4ст. ДЗ по оси R характеристики
+                              </td>
+                              <td>
+                                    <input name="R5" class="DZ" type="number" min=0.2 max=100 step=0.01 value=1.44
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ5</sub></b> - Наклон характеристики 5ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI15" class="DZ" type="number" min=45 max=89 step=0.01 value=70
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DirMode5</b>- Направление 5ст. ДЗ
+                              </td>
+                              <td>
+                                    <select class="DZ" name="DIR5">
+                                          <option selected value="FORWARD">Вперед</option>
+                                          <option value="REVERSE">Назад</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ3</sub></b> - Наклон левой части характеристики ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI3" class="DZ" type="number" min=91 max=135 step=0.01 value=115
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>МЧ2</sub></b> - Наклон нижней части характеристики ДЗ
+                              </td>
+                              <td>
+                                    <input name="PHI2" class="DZ" type="number" min=-45 max=0 step=0.01 value=-15
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>R <sub>нагрузки</sub> </b> - Уставка по оси R нагрузочного режима
+                              </td>
+                              <td>
+                                    <input name="RLOAD" class="DZ" type="number" min=1 max=100 step=0.01 value=8.29
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>&#966<sub>нагр</sub></b> - Угол выреза нагрузочного режима
+                              </td>
+                              <td>
+                                    <input name="PHILOAD" class="DZ" type="number" min=1 max=70 step=1 value=31
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+
+            <div>
+                  <p><u><b>Уставки по времени</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>t1ф</b> - Задержка на срабатывание 1ст. ДЗ (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input name="T1P" class="TIMERS" type="number" min=0 max=15 step=0.001 value=0
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+
+                        <tr>
+                              <td>
+                                    <b>t2</b> - Задержка на срабатывание 2ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="T2" class="TIMERS" type="number" min=0 max=15 step=0.001 value=1.2
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>t3</b> - Задержка на срабатывание 3ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="T3" class="TIMERS" type="number" min=0 max=15 step=0.001 value=5
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>t4</b> - Задержка на срабатывание 4ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="T4" class="TIMERS" type="number" min=0 max=15 step=0.001 value=10
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>t5</b> - Задержка на срабатывание 5ст. ДЗ
+                              </td>
+                              <td>
+                                    <input name="T5" class="TIMERS" type="number" min=0 max=15 step=0.001 value=10
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>t1з</b> - Задержка на срабатывание 1ст. ДЗ (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input name="T1G" class="TIMERS" type="number" min=0 max=15 step=0.001 value=0
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+
+                  </table>
+            </div>
+
+            <div>
+                  <p><u><b>Логика работы</b></u></p>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>XB62</b>- 1ст. ДЗ "земля"
+                              </td>
+                              <td>
+                                    <select class="LOGIC" name="DZ1G">
+                                          <option selected value="TRUE">в работе</option>
+                                          <option value="FALSE">Назад</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XB63</b>- 4ст. ДЗ "земля"
+                              </td>
+                              <td>
+                                    <select class="LOGIC" name="DZ4">
+                                          <option selected value="TRUE">в работе</option>
+                                          <option value="FALSE">Назад</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>XB64</b>- 5ст. ДЗ "земля"
+                              </td>
+                              <td>
+                                    <select class="LOGIC" name="DZ5">
+                                          <option selected value="TRUE">в работе</option>
+                                          <option value="FALSE">Назад</option>
+                                    </select>
+                              </td>
+                        </tr>
+
+                  </table>
+            </div>
+
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+            <hr>
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+            <button onclick='saveFile()'>Сохранить содержимое окна в файл "sel421.rio"</button>
+            <hr>
+
+      </form>
+
+      <p>
+
+            <a target="_blank" href="images/ekra016_305_Common.png"><img src="images/ekra016_305_Common.png"
+                        alt="Построение характеристики ДЗ " title="Построение характеристики ДЗ">Построение
+                  характеристики ДЗ </a>
+
+            <a target="_blank" href="images/ekra016_305_Calculate.png"><img src="images/ekra016_305_Calculate.png"
+                        alt="Учет коэффициента компенсации нулевой последовательности"
+                        title="Учет коэффициента компенсации нулевой последовательности">Учет коэффициента компенсации
+                  нулевой последовательности </a>
+
+      </p>
+
+      <!-- <input id='input' />
+      <button onclick='saveFile()'>Save</button>
+      <a href='' id='linkForSavingFile' style='display:none' /> -->
+
+
+</body>
+
+</html>

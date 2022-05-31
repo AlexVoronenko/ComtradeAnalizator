@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>rel670</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="rel670_ZMFPDIS.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()" method="POST">
+            <h2><b>Уставки терминала ABB REL-670</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub></b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr>
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+            <p><u>Быстродействующая дистанционная защита</u><b> ZMFPDIS</b></p>
+            <div>
+                  <p> <b>RLdFw</b> - активное сопротивление нагрузки "прямо" <input name="RLdFw" class="okp"
+                              type="number" min=0.01 max=5000 step=0.01 value=60 title="Используйте числовой формат"
+                              required>Ом/фаза</p>
+                  <p> <b>RLdRv</b> - активное сопротивление нагрузки "за спину" <input name="RLdRv" class="okp"
+                              type="number" min=0.01 max=5000 step=0.01 value=60 title="Используйте числовой формат"
+                              required>Ом/фаза</p>
+                  <p> <b>XLd</b> - реактивное сопротивление нагрузки <input name="XLd" class="okp" type="number"
+                              min=0.01 max=10000 step=0.01 value=60 title="Используйте числовой формат" required>Ом/фаза
+                  </p>
+                  <p> <b>ArgLd</b>- угол режима нагрузки <input name="ArgLd" class="okp" type="number" min=5 max=70
+                              step=1 value=30 title="Используйте числовой формат" required>&deg</p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (1 ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z1" name="selectDz1" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz1">
+                  <p><b>X1PPZ1</b> - X1 фаза-фаза <input class="Z1" name="X1PPZ1" type="number" min=0.1 max=3000
+                              step=0.01 value=30 title="Используйте числовой формат 
+                              min=0.1 max=3000 step=0.01" required>Ом/фаза</p>
+                  <p> <b>R1PPZ1</b> - R1 фаза-фаза <input class="Z1" name="R1PPZ1" type="number" min=0.00 max=1000
+                              step=0.01 value=5 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X1PEZ1</b> - X1 фаза-земля <input class="Z1" name="X1PEZ1" type="number" min=0.1 max=3000
+                              step=0.01 value=30 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1PEZ1</b> - R1 фаза-земля <input class="Z1" name="R1PEZ1" type="number" min=0.00 max=1000
+                              step=0.01 value=5 title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0Z1</b> - X0 <input class="Z1" name="X0Z1" type="number" min=0.1 max=9000 step=0.01 value=100
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0Z1</b> - R0 <input class="Z1" name="R0Z1" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZ1</b> - R в месте КЗ фаза-фаза <input class="Z1" name="RFPPZ1" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZ1</b> - R в месте КЗ фаза-земля <input class="Z1" name="RFPEZ1" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZ1</b> - t фаза-фаза <input class="Z1" name="tPPZ1" type="number" min=0.0 max=60 step=0.001
+                              value=0 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZ1</b> - t фаза-земля <input class="Z1" name="tPEZ1" type="number" min=0.0 max=60 step=0.001
+                              value=0 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z1" type="checkbox" name="OperationPP1" value="on" checked><b>OperationPP</b>-
+                        активация
+                        контура
+                        фаза-фаза
+                  </p>
+                  <p> <input class="Z1" type="checkbox" name="OperationPE1" value="on" checked><b>OperationPE</b>-
+                        активация
+                        контура
+                        фаза-земля
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (2 ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z2" name="selectDz2" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz2">
+                  <p><b>X1Z2</b> - X1 <input class="Z2" name="X1Z2" type="number" min=0.1 max=3000 step=0.01 value=30
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1Z2</b> - R1 <input class="Z2" name="R1Z2" type="number" min=0.00 max=1000 step=0.01 value=5
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0Z2</b> - X0 <input class="Z2" name="X0Z2" type="number" min=0.1 max=9000 step=0.01 value=120
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0Z2</b> - R0 <input class="Z2" name="R0Z2" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZ2</b> - R в месте КЗ фаза-фаза <input class="Z2" name="RFPPZ2" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZ2</b> - R в месте КЗ фаза-земля <input class="Z2" name="RFPEZ2" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZ2</b> - t фаза-фаза <input class="Z2" name="tPPZ2" type="number" min=0.0 max=60 step=0.001
+                              value=0.4 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZ2</b> - t фаза-земля <input class="Z2" name="tPEZ2" type="number" min=0.0 max=60 step=0.001
+                              value=0.4 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z2" type="checkbox" name="OperationPP2" value="on" checked><b>OperationPP</b>-
+                        активация
+                        контура
+                        фаза-фаза
+                  </p>
+                  <p> <input class="Z2" type="checkbox" name="OperationPE2" value="on" checked><b>OperationPE</b>-
+                        активация
+                        контура
+                        фаза-земля
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (3 ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z3" name="selectDz3" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz3">
+                  <p><b>X1Z3</b> - X1 <input class="Z3" name="X1Z3" type="number" min=0.1 max=3000 step=0.01 value=40
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1Z3</b> - R1 <input class="Z3" name="R1Z3" type="number" min=0.00 max=1000 step=0.01 value=5
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0Z3</b> - X0 <input class="Z3" name="X0Z3" type="number" min=0.1 max=9000 step=0.01 value=120
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0Z3</b> - R0 <input class="Z3" name="R0Z3" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZ3</b> - R в месте КЗ фаза-фаза <input class="Z3" name="RFPPZ3" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZ3</b> - R в месте КЗ фаза-земля <input class="Z3" name="RFPEZ3" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZ3</b> - t фаза-фаза <input class="Z3" name="tPPZ3" type="number" min=0.0 max=60 step=0.001
+                              value=0.8 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZ3</b> - t фаза-земля <input class="Z3" name="tPEZ3" type="number" min=0.0 max=60 step=0.001
+                              value=0.8 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z3" type="checkbox" name="OperationPP3" value="on" checked><b>OperationPP</b>-
+                        активация
+                        контура
+                        фаза-фаза
+                  </p>
+                  <p> <input class="Z3" type="checkbox" name="OperationPE3" value="on" checked><b>OperationPE</b>-
+                        активация
+                        контура
+                        фаза-земля
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (4 ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z4" name="selectDz4" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz4">
+                  <p><b>X1Z4</b> - X1 <input class="Z4" name="X1Z4" type="number" min=0.1 max=3000 step=0.01 value=40
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1Z4</b> - R1 <input class="Z4" name="R1Z4" type="number" min=0.00 max=1000 step=0.01 value=5
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0Z4</b> - X0 <input class="Z4" name="X0Z4" type="number" min=0.1 max=9000 step=0.01 value=120
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0Z4</b> - R0 <input class="Z4" name="R0Z4" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZ4</b> - R в месте КЗ фаза-фаза <input class="Z4" name="RFPPZ4" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZ4</b> - R в месте КЗ фаза-земля <input class="Z4" name="RFPEZ4" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZ4</b> - t фаза-фаза <input class="Z4" name="tPPZ4" type="number" min=0.0 max=60 step=0.001
+                              value=1.2 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZ4</b> - t фаза-земля <input class="Z4" name="tPEZ4" type="number" min=0.0 max=60 step=0.001
+                              value=1.2 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z4" type="checkbox" name="OperationPP4" value="on" checked><b>OperationPP</b>-
+                        активация
+                        контура
+                        фаза-фаза
+                  </p>
+                  <p> <input class="Z4" type="checkbox" name="OperationPE4" value="on" checked><b>OperationPE</b>-
+                        активация
+                        контура
+                        фаза-земля
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (5 ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z5" name="selectDz5" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz5">
+                  <p><b>X1Z5</b> - X1 <input class="Z5" name="X1Z5" type="number" min=0.1 max=3000 step=0.01 value=40
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1Z5</b> - R1 <input class="Z5" name="R1Z5" type="number" min=0.00 max=1000 step=0.01 value=5
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0Z5</b> - X0 <input class="Z5" name="X0Z5" type="number" min=0.1 max=9000 step=0.01 value=120
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0Z5</b> - R0 <input class="Z5" name="R0Z5" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZ5</b> - R в месте КЗ фаза-фаза <input class="Z5" name="RFPPZ5" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZ5</b> - R в месте КЗ фаза-земля <input class="Z5" name="RFPEZ5" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZ5</b> - t фаза-фаза <input class="Z5" name="tPPZ5" type="number" min=0.0 max=60 step=0.001
+                              value=1.6 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZ5</b> - t фаза-земля <input class="Z5" name="tPEZ5" type="number" min=0.0 max=60 step=0.001
+                              value=1.6 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z5" type="checkbox" name="OperationPP5" value="on" checked><b>OperationPP</b>-
+                        активация
+                        контура
+                        фаза-фаза
+                  </p>
+                  <p> <input class="Z5" type="checkbox" name="OperationPE5" value="on" checked><b>OperationPE</b>-
+                        активация
+                        контура
+                        фаза-земля
+                  </p>
+            </div>
+            <hr>
+            <p><u>Дистанционная защита (RV ступень)</u></p>
+            <div> <b>OperationDir</b>- Режим работы ступени
+                  <select class="Z6" name="selectDz6" onchange="changeSelect(this)">
+                        <option value="off">Выкл</option>
+                        <option value="nonDirectional">Ненаправленная</option>
+                        <option selected value="forward">Прямое</option>
+                        <option value="reverse">Обратное</option>
+                  </select>
+            </div>
+            <div id="selectDz6">
+                  <p><b>X1ZRV</b> - X1 <input class="Z6" name="X1ZR" type="number" min=0.1 max=3000 step=0.01 value=40
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R1ZRV</b> - R1 <input class="Z6" name="R1ZR" type="number" min=0.00 max=1000 step=0.01 value=5
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>X0ZRV</b> - X0<input class="Z6" name="X0ZR" type="number" min=0.1 max=9000 step=0.01 value=120
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>R0ZRV</b> - R0<input class="Z6" name="R0ZR" type="number" min=0 max=3000 step=0.01 value=15
+                              title="Используйте числовой формат" required>Ом/фаза</p>
+                  <p> <b>RFPPZRV</b> - R в месте КЗ фаза-фаза <input class="Z6" name="RFPPZR" type="number" min=0.01
+                              max=9000 step=0.01 value=30 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>RFPEZRV</b> - R в месте КЗ фаза-земля <input class="Z6" name="RFPEZR" type="number" min=0.01
+                              max=9000 step=0.01 value=100 title="Используйте числовой формат" required>Ом/контур</p>
+                  <p> <b>tPPZRV</b> - t фаза-фаза <input class="Z6" name="tPPZR" type="number" min=0.0 max=60 step=0.001
+                              value=0.001 title="Используйте числовой формат" required>с</p>
+                  <p> <b>tPEZRV</b> - t фаза-земля <input class="Z6" name="tPEZR" type="number" min=0.0 max=60
+                              step=0.001 value=0.001 title="Используйте числовой формат" required>с</p>
+                  <p> <input class="Z6" type="checkbox" name="OperationPPRV" value="on" checked><b>OperationPP</b>-
+                        активация контура фаза-фаза
+                  </p>
+                  <p> <input class="Z6" type="checkbox" name="OperationPERV" value="on" checked><b>OperationPE</b>-
+                        активация контура фаза-земля
+                  </p>
+            </div>
+
+
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+      </form>
+      <p>
+            <a target="_blank" href="images/rel670_Common.png"><img src="images/rel670_Common.png"
+                        alt="Характеристики дистанционных органов"
+                        title="Характеристики дистанционных органов">Характеристики дистанционных органов </a>
+            <a target="_blank" href="images/rel670_Load.png"><img src="images/rel670_Load.png" alt="Вырез нагрузки"
+                        title="Вырез нагрузки">Вырез нагрузки </a>
+            <a target="_blank" href="images/rel670_Load3x.png"><img src="images/rel670_Load3x.png"
+                        alt="Вырез нагрузки при трехфазном КЗ" title="Вырез нагрузки при трехфазном КЗ">Вырез нагрузки
+                  при трехфазном КЗ </a>
+
+            <a target="_blank" href="images/rel670_Dir.png"><img src="images/rel670_Dir.png"
+                        alt="Направление дистанционных органов" title="Направление дистанционных органов">Направление
+                  дистанционных органов </a>
+            <a target="_blank" href="images/rel670_FRPSDIS.png"><img src="images/rel670_FRPSDIS.png"
+                        alt="Характеристики работы фазового селектора"
+                        title="Характеристики работы фазового селектора">Характеристики работы фазового селектора </a>
+            <a target="_blank" href="images/rel670_Mho.png"><img src="images/rel670_Mho.png"
+                        alt="Круговая характеристика ДЗ" title="Круговая характеристика ДЗ">Круговая характеристика ДЗ
+            </a>
+            <a target="_blank" href="images/rel670_Phase.png"><img src="images/rel670_Phase.png"
+                        alt="Полигональная характеристика ДЗ (фаза-фаза)"
+                        title="Полигональная характеристика ДЗ (фаза-фаза)">Полигональная характеристика ДЗ (фаза-фаза)
+            </a>
+            <a target="_blank" href="images/rel670_Ground.png"><img src="images/rel670_Ground.png"
+                        alt="Полигональная характеристика ДЗ (фаза-земля)"
+                        title="Полигональная характеристика ДЗ (фаза-земля)">Полигональная характеристика ДЗ
+                  (фаза-земля)
+            </a>
+            <a target="_blank" href="images/rel670_Ground1.png"><img src="images/rel670_Ground1.png"
+                        alt="Полигональная характеристика ДЗ (фаза-земля)"
+                        title="Полигональная характеристика ДЗ (фаза-земля)">Полигональная характеристика ДЗ
+                  (фаза-земля)
+            </a>
+            <a target="_blank" href="images/rel670_CalculatePhase.png"><img src="images/rel670_CalculatePhase.png"
+                        alt="Расчет работы дистанционных органов (фаза-фаза)"
+                        title="Расчет работы дистанционных органов (фаза-фаза)">Расчет работы дистанционных органов
+                  (фаза-фаза) </a>
+            <a target="_blank" href="images/rel670_CalculatePhase1.png"><img src="images/rel670_CalculatePhase1.png"
+                        alt="Расчет работы дистанционных органов (фаза-фаза)"
+                        title="Расчет работы дистанционных органов (фаза-фаза)">Расчет работы дистанционных органов
+                  (фаза-фаза) </a>
+            <a target="_blank" href="images/rel670_CalculatePhase2.png"><img src="images/rel670_CalculatePhase2.png"
+                        alt="Расчет работы дистанционных органов (фаза-фаза)"
+                        title="Расчет работы дистанционных органов (фаза-фаза)">Расчет работы дистанционных органов
+                  (фаза-фаза) </a>
+            <a target="_blank" href="images/rel670_CalculateGround.png"><img src="images/rel670_CalculateGround.png"
+                        alt="Расчет работы дистанционных органов (фаза-земля)"
+                        title="Расчет работы дистанционных органов (фаза-земля)">Расчет работы дистанционных органов
+                  (фаза-земля) </a>
+            <a target="_blank" href="images/rel670_CalculateGround1.png"><img src="images/rel670_CalculateGround1.png"
+                        alt="Расчет работы дистанционных органов (фаза-земля)"
+                        title="Расчет работы дистанционных органов (фаза-земля)">Расчет работы дистанционных органов
+                  (фаза-земля) </a>
+            <a target="_blank" href="images/rel670_CalculateGround2.png"><img src="images/rel670_CalculateGround2.png"
+                        alt="Расчет работы дистанционных органов (фаза-земля)"
+                        title="Расчет работы дистанционных органов (фаза-земля)">Расчет работы дистанционных органов
+                  (фаза-земля) </a>
+      </p>
+
+</body>
+
+</html>

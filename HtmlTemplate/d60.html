@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>D60</title>
+      <link rel="stylesheet" href="htmltemplate.css">
+      <script src="d60.js"></script>
+</head>
+
+<body>
+      <form class="needValivations" onsubmit="return formValidation()" method="POST">
+            <h2><b>Уставки терминала GE D60</b></h2>
+            <hr>
+            <div>
+                  <table>
+                        <tr>
+                              <td> <b>U<sub>н перв</sub></b> - первичное напряжение ТН </td>
+                              <td> <input name="VPRIM-LL" class="main" type="number" min=200 max=1000000 step=1
+                                          value=110000 title="Используйте числовой формат" required> В</td>
+                        </tr>
+
+                        <tr>
+                              <td><b>U<sub>н втор</sub></b> - вторичное напряжение ТН </td>
+                              <td><input name="VNOM" class="main" type="number" min=10 max=200 step=1 value=100
+                                          title="Используйте числовой формат" required> В</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н перв</sub></b> - первичный ток ТТ </td>
+                              <td><input name="IPRIM" class="main" type="number" min=10 max=5000 step=1 value=600
+                                          title="Используйте числовой формат" required> кА</td>
+                        </tr>
+                        <tr>
+                              <td><b>I<sub>н втор</sub></b> - вторичный ток ТТ </td>
+                              <td><input name="INOM" class="main" type="number" min=1 max=5 step=1 value=5
+                                          title="Используйте числовой формат" required> A</td>
+                        </tr>
+                        <!-- <tr>
+                              <td><b>f<sub>ном</sub></b> - частота сети</td>
+                              <td><input name="FNOM" class="main" type="number" min=1 max=70 step=1
+                        value=50 title="Используйте числовой формат" required> Гц</td>
+                        </tr> -->
+                        <tr>
+                              <td><b>I<sub>N</sub>/I<sub>ном</sub></b> - отношение К<sub>тт</sub> ТТ в нуле к фазному
+                              </td>
+                              <td><input name="ININOM" class="main" type="number" min=0.1 max=10 step=0.01 value=1
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td><b>U<sub>LN</sub>/U<sub>N</sub></b> - отношение К<sub>ТН</sub> 3U0/UN </td>
+                              <td><input name="VLNVN" class="main" type="number" min=0.1 max=10 step=0.001 value=1.732
+                                          title="Используйте числовой формат" required></td>
+                        </tr>
+                        <tr>
+                              <td> <b>Место установки ТН</b></td>
+                              <td><select class="main" name="PTCONN">
+                                          <option value="LINE">на линии</option>
+                                          <option selected value="BUS">на шинах</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <p><b>Направление ТТ</b>
+                              </td>
+                              <td> <select class="main" name="CTSTARPOINT">
+                                          <option value="BUS">в шины</option>
+                                          <option selected value="LINE">в линию</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td><b>Угол линии</b> </td>
+                              <td><input name="LINEANGLE" class="main" type="number" min=1 max=90 step=0.01 value=75
+                                          title="Используйте числовой формат" required>&deg</td>
+                        </tr>
+                        <tr>
+                              <td><b>Длина линии</b></td>
+                              <td><input name="LINELENGTH" class="main" type="number" min=0.1 max=1000 step=0.1 value=10
+                                          title="Используйте числовой формат" required> км</td>
+                        </tr>
+                        <tr>
+                              <td><b>Уставки заданы</b></td>
+                              <td><select disabled class="main" name="IMPRIM">
+                                          <option value="YES">в первичных</option>
+                                          <option selected value="NO">во вторичных</option>
+                                    </select>величинах</td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+            <p><u>Отстройка от нагрузки</u><b> LoadEnch</b></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Reach</b> - уставка по R
+                              </td>
+                              <td>
+                                    <input name="RLOAD" class="common" type="number" min=0.02 max=250 step=0.01 value=1
+                                          title="Используйте числовой формат" required> Ом/фаза
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Angle</b>- угол режима нагрузки
+                              </td>
+                              <td>
+                                    <input name="ANGLOAD" class="common" type="number" min=5 max=50 step=1 value=30
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+
+                  </table>
+            </div>
+            <hr>
+            <!-- <p><u>Дистанционная защита (общие уставки)</u><b> 21Q</b></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td>
+                                    <b>Ang_Alpha</b> - угол наклона характеристики во II крадранте
+                              </td>
+                              <td>
+                                    <input class="common" name="Ang_Alpha" type="number" min=5 max=30 step=1 value=30
+                                          title="Используйте числовой формат В передыдущей версии задан 'жестко' 15&deg min=5 max=30 step=1"
+                                          required>&deg
+                              </td>
+                        </tr>
+                  </table>
+                  <p></p>
+            </div>
+            <hr> -->
+
+            <p><u>Дистанционная защита (1 ступень) (фаза-фаза) <b>Distance</b></u></p>
+            <div>
+                  <table>
+                        <tr>
+                              <td><b>ДЗ (фаза-фаза)</b></td>
+                              <td><select class="Z1" name="ENABLEP">
+                                          <option selected value="TRUE">Enabled</option>
+                                          <option value="FALSE">Disabled</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DirMode</b> - Направление ступени (фаза-фаза)
+                              </td>
+                              <td>
+                                    <select class="Z1" name="DIRP">
+                                          <option selected value="FORWARD">Прямое</option>
+                                          <option value="REVERSE">Обратное</option>
+                                          <option value="NONDIRECTIONAL">Ненаправленная</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Shape</b>- Тип характеристики ДЗ (фаза-фаза)
+                              </td>
+                              <td>
+                                    <select class="Z1" name="SHAPEP">
+                                          <option disabled value="MHO">Mho (круговая)</option>
+                                          <option selected value="QUAD">Quad (полигональная)</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Reach</b> - Полное сопротивление Z "вперед" (фаза-фаза)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZP" type="number" min=0.02 max=500 step=0.01 value=0.66
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA</b> - &#966<sub>МЧ</sub> вперед (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_P" type="number" min=30 max=90 step=1 value=70
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Rev Reach</b> - Полное сопротивление Z "назад" (фаза-фаза)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZREVP" type="number" min=0.02 max=500 step=0.01 value=2
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Rev Reach RCA</b> - &#966<sub>МЧ</sub> назад (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_REVP" type="number" min=30 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Comp Limit</b> - &#966<sub></sub> верхняя прямая характеристики
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_COMPP" type="number" min=30 max=90 step=1 value=90
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR RCA</b> - &#966<sub>МЧ </sub>направлен.
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_DIRP" type="number" min=30 max=90 step=1 value=70
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR Comp Limit</b> - &#966 <sub></sub> предельного сравнения (нижняя, левая
+                                    линия)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_DIRCOMPP" type="number" min=30 max=90 step=1 value=90
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Quad Right Blinder</b> - Полное сопротивление Z "вперед" (фаза-фаза)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZRIGHTP" type="number" min=0.02 max=500 step=0.01 value=10
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA Right</b> - &#966<sub>МЧ </sub>правой стороны
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_RIGHTP" type="number" min=60 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Quad Left Blinder</b> - Полное сопротивление Z "вперед" (фаза-фаза)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZLEFTP" type="number" min=0.02 max=500 step=0.01 value=10
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA Left</b> - &#966<sub>МЧ </sub>левой стороны
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_LEFTP" type="number" min=60 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Delay</b> - время работы t (фаза-фаза)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="TP" type="number" min=0 max=65.535 step=0.001 value=0
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                        <tr>
+                              <td><b>ДЗ (фаза-земля)</b></td>
+                              <td><select class="Z1" name="ENABLEG">
+                                          <option selected value="TRUE">Enabled</option>
+                                          <option value="FALSE">Disabled</option>
+                                    </select></td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DirMode</b> - Направление ступени (фаза-земля)
+                              </td>
+                              <td>
+                                    <select class="Z1" name="DIRG">
+                                          <option selected value="FORWARD">Прямое</option>
+                                          <option value="REVERSE">Обратное</option>
+                                          <option value="NONDIRECTIONAL">Ненаправленная</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Shape</b>- Тип характеристики ДЗ (фаза-земля)
+                              </td>
+                              <td>
+                                    <select class="Z1" name="SHAPEG">
+                                          <option disabled value="MHO">Mho (круговая)</option>
+                                          <option selected value="QUAD">Quad (полигональная)</option>
+                                    </select>
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z0/Z1 Mag</b> - величина Z0/Z1<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="Z0Z1G" type="number" min=0 max=10 step=0.01 value=2.9
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Z0/Z1 Ang</b> - угол Z0/Z1
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_Z0Z1G" type="number" min=-90 max=90 step=1 value=6
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Reach</b> - Полное сопротивление Z "вперед" (фаза-земля)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZG" type="number" min=0.02 max=500 step=0.01 value=0.66
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA</b> - &#966<sub>МЧ</sub> вперед (фаза-земля)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_G" type="number" min=30 max=90 step=1 value=70
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Rev Reach</b> - Полное сопротивление Z "назад" (фаза-земля)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZREVG" type="number" min=0.02 max=500 step=0.01 value=2
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Rev Reach RCA</b> - &#966<sub>МЧ</sub> назад (фаза-земля)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_REVG" type="number" min=30 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Non-Homohen Ang</b> - угол неоднородности (наклон верхней прямой)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_TILTG" type="number" min=-40 max=40 step=1 value=5
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Comp Limit</b> - &#966<sub></sub> верхняя прямая характеристики
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_COMPG" type="number" min=30 max=90 step=1 value=90
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR RCA</b> - &#966<sub>МЧ </sub>направлен.
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_DIRG" type="number" min=30 max=90 step=1 value=70
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>DIR Comp Limit</b> - &#966 <sub></sub> предельного сравнения (нижняя, левая
+                                    линия)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_DIRCOMPG" type="number" min=30 max=90 step=1 value=90
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Quad Right Blinder</b> - Полное сопротивление Z "вперед" (фаза-земля)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZRIGHTG" type="number" min=0.02 max=500 step=0.01 value=10
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA Right</b> - &#966<sub>МЧ </sub>правой стороны
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_RIGHTG" type="number" min=60 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Quad Left Blinder</b> - Полное сопротивление Z "вперед" (фаза-земля)<sub></sub>
+                              </td>
+                              <td>
+                                    <input class="Z1" name="ZLEFTG" type="number" min=0.02 max=500 step=0.01 value=10
+                                          title="Используйте числовой формат" required> Ом
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>RCA Left</b> - &#966<sub>МЧ </sub>левой стороны
+                              </td>
+                              <td>
+                                    <input class="Z1" name="PHI_LEFTG" type="number" min=60 max=90 step=1 value=85
+                                          title="Используйте числовой формат" required> &deg
+                              </td>
+                        </tr>
+                        <tr>
+                              <td>
+                                    <b>Delay</b> - время работы t (фаза-земля)
+                              </td>
+                              <td>
+                                    <input class="Z1" name="TG" type="number" min=0 max=65.535 step=0.001 value=0
+                                          title="Используйте числовой формат" required> сек
+                              </td>
+                        </tr>
+                  </table>
+            </div>
+            <hr>
+
+
+
+
+
+
+
+
+            <hr>
+            <p> <input class="main" type="checkbox" name="KZO_EN" value="on"><b>Kz0</b>- сохранить kZ0 в RIO файл</p>
+            <hr>
+            <input type="submit" value="Формирование параметров RIO файла">
+            <!-- <button onclick="formValidation()">Формирование параметров RIO файла</button> -->
+
+            <textarea id="outRioData" wrap="off">
+            ОБЛАСТЬ ДЛЯ ВЫВОДА ДАННЫХ outRio
+         </textarea>
+
+      </form>
+      <hr>
+      <p>
+            <a target="_blank" href="images/pcs902_load.png"><img src="images/pcs902_load.png" alt="Вырез нагрузки"
+                        title="Вырез нагрузки">Вырез нагрузки </a>
+            <a target="_blank" href="images/pcs902_MhoPhGnd.png"><img src="images/pcs902_MhoPhGnd.png"
+                        alt="Круговая характеристика ДЗ (фаза-земля)"
+                        title="Круговая характеристика ДЗ (фаза-земля)">Круговая характеристика ДЗ (фаза-земля)</a>
+            <a target="_blank" href="images/pcs902_MhoPhPh.png"><img src="images/pcs902_MhoPhPh.png"
+                        alt="Круговая характеристика ДЗ (фаза-фаза)"
+                        title="Круговая характеристика ДЗ (фаза-земля)">Круговая характеристика ДЗ (фаза-фаза)</a>
+            <a target="_blank" href="images/pcs902_Quad.png"> <img src="images/pcs902_Quad.png"
+                        alt="Полигональная характеристика ДЗ" title="Полигональная характеристика ДЗ">Полигональная
+                  характеристика ДЗ</a>
+            <a target="_blank" href="images/pcs902_QuadFwd.png"><img src="images/pcs902_QuadFwd.png"
+                        alt="Полигональная характеристика ДЗ (прямо)"
+                        title="Полигональная характеристика ДЗ (прямо)">Полигональная характеристика ДЗ (прямо)</a>
+            <a target="_blank" href="images/pcs902_QuadRev.png"><img src="images/pcs902_QuadRev.png"
+                        alt="Полигональная характеристика ДЗ (назад)"
+                        title="Полигональная характеристика ДЗ (назад)">Полигональная характеристика ДЗ (назад)</a>
+      </p>
+</body>
+
+</html>
